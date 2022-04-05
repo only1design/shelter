@@ -1,0 +1,21 @@
+{
+  "name": "rs-school-repo",
+  "version": "1.0.0",
+  "description": "Private repository for @tboendergaard",
+  "main": "gulpfile.js",
+  "type": "module",
+  "scripts": {},
+  "author": "TBoendergaard",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.27.9",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-less": "^5.0.0",
+    "gulp-notify": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-replace": "^1.1.3",
+    "gulp-sourcemaps": "^3.0.0"
+  }
+}
