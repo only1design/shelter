@@ -20,13 +20,14 @@ import { copy } from './gulp/tasks/copy.js';
 import { less } from './gulp/tasks/less.js';
 import { server } from './gulp/tasks/server.js';
 
+
 // Watcher for files changes
 function watcher() {
-  gulp.watch(path.watch.js, copy);
-  gulp.watch(path.watch.html, copy);
-  gulp.watch(path.watch.fonts, copy);
-  gulp.watch(path.watch.img, copy);
-  gulp.watch(path.watch.less, less);
+  gulp.watch(path.watch.jsFiles, copy);
+  gulp.watch(path.watch.htmlFiles, copy);
+  gulp.watch(path.watch.fontsFiles, copy);
+  gulp.watch(path.watch.imgFiles, copy);
+  gulp.watch(path.watch.lessFiles, less);
 }
 
 // Main tasks
