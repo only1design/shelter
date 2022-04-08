@@ -12,6 +12,11 @@
 @georgia: "Georgia";
 @arial: "Arial";
 
+body {
+  font-weight: 400;
+  font-size: 20px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -106,6 +111,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-top: 60px;
+  padding-bottom: 60px;
 }
 .logo {
   display: flex;
@@ -145,13 +151,13 @@ body {
     display: grid;
     width: fit-content;
     grid-template-columns: repeat(4, auto);
-    grid-gap: 35px;
+    grid-gap: 36px;
   }
 
   &__list-item {
     color: @color-dark-s;
     border-bottom: 3px solid transparent;
-    border-top: 3px solid transparent;
+    //border-top: 3px solid transparent;
     &_active {
       color: @color-light-s;
       //border-top: 3px solid rgba(0, 0, 0, 0);
@@ -161,8 +167,56 @@ body {
 }
 
 .start-screen {
-  min-height: 908px;
-  position: relative;
   background-image: url("@styles/img/start-screen/start-screen-gradient-background.jpg");
   background-size: cover;
+}
+
+.start-screen-content {
+  display: flex;
+  &__desc {
+    padding-top: 163px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 42px;
+  }
+
+  &__heading {
+    margin-bottom: 42px;
+  }
+
+  &__subheading {
+    margin-bottom: 42px;
+  }
+
+  &__btn {
+  }
+
+  &__img {
+    width: 58.167%;
+    flex: 1 0 auto;
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.button-primary {
+  display: block;
+  width: fit-content;
+  padding: 15px 45px;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  border-radius: 100px;
+  background-color: @color-primary;
+  color: @color-dark-3xl;
+  font-family: @georgia;
+  font-weight: 400;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: @color-primary-light;
+    color: @color-dark-2xl;
+  }
 }
