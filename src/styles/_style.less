@@ -1,20 +1,10 @@
-@color-light-xl: #ffffff;
-@color-light-l: #f6f6f6;
-@color-light-s: #fafafa;
-@color-dark-s: #cdcdcd;
-@color-dark-m: #b2b2b2;
-@color-dark-l: #545454;
-@color-dark-xl: #4c4c4c;
-@color-dark-2xl: #444444;
-@color-dark-3xl: #292929;
-@color-primary: #f1cdb3;
-@color-primary-light: #fddcc4;
-@georgia: "Georgia";
-@arial: "Arial";
+@import (less) url("_variables");
 
 body {
   font-weight: 400;
   font-size: 20px;
+  font-family: @arial;
+  font-weight: 600;
 }
 
 a {
@@ -22,84 +12,6 @@ a {
   text-decoration: none;
 }
 
-.header-2 {
-  font-family: @georgia;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 44px;
-  line-height: 130%;
-}
-.header-3 {
-  font-family: @georgia;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 35px;
-  line-height: 130%;
-  letter-spacing: 0.06em;
-
-  // color: #C4C4C4;
-  &_mobile {
-    font-size: 25px;
-  }
-}
-
-.header-4 {
-  font-family: @georgia;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 115%;
-
-  letter-spacing: 0.06em;
-
-  // color: #C4C4C4;
-}
-.header-5 {
-  font-family: @georgia;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 110%;
-
-  letter-spacing: 0.06em;
-
-  // color: #C4C4C4;
-  &_modal-window {
-    font-weight: 700;
-  }
-}
-.paragraph-l {
-  font-family: @arial;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 160%;
-
-  // color: #c4c4c4;
-}
-.paragraph-s {
-  font-family: @arial;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 150%;
-
-  // color: #c4c4c4;
-}
-.paragraph-mobile-menu {
-  font-family: @arial;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 160%;
-
-  // color: #c4c4c4;
-}
-
-body {
-  font-family: @arial;
-  font-weight: 600;
-}
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -112,6 +24,7 @@ body {
   padding-top: 60px;
   padding-bottom: 60px;
 }
+
 .logo {
   display: flex;
   flex-direction: column;
@@ -119,28 +32,28 @@ body {
   justify-content: space-between;
   align-items: center;
   width: fit-content;
-}
-.logo-title {
-  font-family: @georgia;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 110%;
+  &__title {
+    font-family: @georgia;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 110%;
 
-  letter-spacing: 0.06em;
+    letter-spacing: 0.06em;
 
-  color: @color-primary;
-}
-.logo-subtitle {
-  font-family: @arial;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 15px;
+    color: @color-primary;
+  }
+  &__subtitle {
+    font-family: @arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
 
-  letter-spacing: 0.1em;
+    letter-spacing: 0.1em;
 
-  color: @color-light-xl;
+    color: @color-light-xl;
+  }
 }
 
 .nav {
@@ -160,29 +73,14 @@ body {
     &_active {
       color: @color-light-s;
       border-bottom: 3px solid @color-primary;
-      // &:hover::after {
-      //   height: 0;
-      // }
     }
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: 0%;
-      display: block;
-      width: 0;
-      height: 3px;
-      background: @color-primary;
-      transition: width 0.3s ease-in;
-    }
-    &:hover::after {
-      width: 100%;
+    &:hover {
+      color: @color-light-s;
     }
   }
 }
 
-.start-screen {
+.start-screen-bg {
   background-image: url("@styles/img/start-screen/start-screen-gradient-background.jpg");
   background-size: cover;
 }
@@ -219,26 +117,6 @@ body {
   }
 }
 
-.button-primary {
-  display: block;
-  width: fit-content;
-  padding: 15px 45px;
-  font-size: 17px;
-  line-height: 130%;
-  letter-spacing: 0.06em;
-  border-radius: 100px;
-  background-color: @color-primary;
-  color: @color-dark-3xl;
-  font-family: @georgia;
-  font-weight: 400;
-  transition: all 0.1s ease-in-out;
-  &:hover {
-    transition: all 0.1s ease-in-out;
-    background-color: @color-primary-light;
-    color: @color-dark-2xl;
-  }
-}
-
 .about {
   display: flex;
   padding: 80px 0 100px;
@@ -261,5 +139,106 @@ body {
   &__subheading {
     padding-top: 25px;
     color: @color-dark-xl;
+  }
+}
+
+.our-friends-bg {
+  background-color: @color-light-l;
+}
+
+.our-friends {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-shrink: auto;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  &__heading-box {
+    text-align: center;
+  }
+
+  &__heading {
+    color: @color-dark-l;
+    height: 90px;
+  }
+
+  &__slider {
+    padding-top: 60px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__slider-arrow {
+    width: 52px;
+    height: 52px;
+    border-radius: 52px;
+    border: 2px solid @color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      transition: all 0.1s ease-in-out;
+      background-color: @color-primary-light;
+      border-color: @color-primary-light;
+    }
+
+    &_inactive {
+      cursor: default !important;
+      color: @color-dark-s !important;
+      border-color: @color-dark-s !important;
+      background-color: transparent !important;
+    }
+  }
+
+  &__slider-items-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 53px;
+  }
+
+  &__slider-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+    background-color: @color-light-s;
+    border-radius: 9px;
+    cursor: pointer;
+
+    &:hover .our-friends__slider-item-btn {
+      transition: all 0.1s ease-in-out;
+      border-color: @color-primary-light;
+      background-color: @color-primary-light;
+      color: @color-dark-2xl;
+    }
+  }
+
+  &__slider-item-img {
+    margin-bottom: 30px;
+    img {
+      border-radius: 9px;
+    }
+  }
+
+  &__slider-item-name {
+    margin-bottom: 30px;
+    font-family: @georgia;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: @color-dark-l;
+    letter-spacing: 0.06em;
+  }
+
+  &__btn {
+    margin-top: 60px;
   }
 }

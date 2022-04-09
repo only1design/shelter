@@ -1,0 +1,125 @@
+@import (less) url("_variables");
+
+.header-2 {
+  font-family: @georgia;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 130%;
+}
+.header-3 {
+  font-family: @georgia;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+
+  // color: #C4C4C4;
+  &_mobile {
+    font-size: 25px;
+  }
+}
+
+.header-4 {
+  font-family: @georgia;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+
+  letter-spacing: 0.06em;
+
+  // color: #C4C4C4;
+}
+.header-5 {
+  font-family: @georgia;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+
+  letter-spacing: 0.06em;
+
+  // color: #C4C4C4;
+  &_modal-window {
+    font-weight: 700;
+  }
+}
+.paragraph-l {
+  font-family: @arial;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+
+  // color: #c4c4c4;
+}
+.paragraph-s {
+  font-family: @arial;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+
+  // color: #c4c4c4;
+}
+.paragraph-mobile-menu {
+  font-family: @arial;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 160%;
+
+  // color: #c4c4c4;
+}
+
+.button-primary {
+  display: block;
+  box-sizing: border-box;
+
+  height: 52px;
+  width: fit-content;
+  border-radius: 100px;
+  padding: 0 45px;
+  background-color: @color-primary;
+
+  font-family: @georgia;
+  font-size: 17px;
+  line-height: 52px;
+  letter-spacing: 0.06em;
+  color: @color-dark-3xl;
+  font-weight: 400;
+
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: @color-primary-light;
+  }
+}
+
+.button-secondary {
+  display: block;
+  box-sizing: border-box;
+
+  height: 52px;
+  width: fit-content;
+  border: 2px solid @color-primary;
+  border-radius: 100px;
+  padding: 0 43px;
+
+  font-family: @georgia;
+  font-size: 17px;
+  line-height: 52px;
+  letter-spacing: 0.06em;
+  color: @color-dark-3xl;
+  font-weight: 400;
+
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    transition: all 0.1s ease-in-out;
+    border-color: @color-primary-light;
+    background-color: @color-primary-light;
+    color: @color-dark-2xl;
+  }
+}
