@@ -8,7 +8,6 @@ const path = {
     build: {
         jsFolder: `${buildFolder}/scripts/`,
         htmlFolder: `${buildFolder}/`,
-        htmlFiles: `${buildFolder}/*.html`,
         fontsFolder: `${buildFolder}/styles/fonts/`,
         imgFolder: `${buildFolder}/styles/img/`,
         cssFolder: `${buildFolder}/styles/`,
@@ -16,7 +15,7 @@ const path = {
     src: {
         jsFiles: `${srcFolder}/scripts/**/*.js`,
         htmlFiles: `${srcFolder}/*.html`,
-        fontsFiles: `${srcFolder}/styles/fonts/**/*.*`,
+        fontsFiles: `${srcFolder}/styles/fonts/*/*.*`,
         imgFiles: `${srcFolder}/styles/img/**/*.*`,
         lessFile: `${srcFolder}/styles/general.less`,
         cssFiles: `${srcFolder}/styles/**/*.*`,
