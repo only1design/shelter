@@ -982,6 +982,9 @@ textarea {
   background-color: #fddcc4;
   color: #444444;
 }
+.light-l-bg {
+  background-color: #f6f6f6;
+}
 body {
   font-weight: 400;
   font-size: 20px;
@@ -1101,9 +1104,6 @@ a {
   padding-top: 25px;
   color: #4c4c4c;
 }
-.our-friends-bg {
-  background-color: #f6f6f6;
-}
 .our-friends {
   display: flex;
   align-items: center;
@@ -1218,6 +1218,53 @@ a {
 }
 .help__item-caption {
   color: #545454;
+}
+.donation {
+  display: flex;
+  align-items: center;
+  width: 915px;
+  margin: 0 auto;
+  padding: 80px 0 100px;
+  height: 462px;
+  box-sizing: border-box;
+}
+.donation__img {
+  width: 505px;
+  display: block;
+  flex: 1 1 auto;
+}
+.donation__content {
+  width: 380px;
+  margin-left: 30px;
+}
+.donation__heading {
+  margin-bottom: 20px;
+}
+.donation__subheading {
+  margin-bottom: 20px;
+}
+.donation__card {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  background-color: #f1cdb3;
+  border-radius: 9px;
+  padding: 10px 15px;
+  transition: all 0.1s ease-in-out;
+}
+.donation__card:hover {
+  transition: all 0.1s ease-in-out;
+  background-color: #fddcc4;
+}
+.donation__icon {
+  font-size: 23px;
+}
+.donation__card-number {
+  margin-left: 14.5px;
+}
+.donation__information {
+  color: #b2b2b2;
 }
 
 /*# sourceMappingURL=general.css.map */
