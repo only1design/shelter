@@ -7,6 +7,10 @@ body {
   font-weight: 600;
 }
 
+main {
+  background-color: @color-light-xl;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -329,5 +333,46 @@ a {
 
   &__information {
     color: @color-dark-m;
+  }
+}
+
+.footer-bg {
+  background-image: url("@styles/img/footer/footer-background.jpg");
+  background-size: cover;
+}
+.footer {
+  display: flex;
+  &__content {
+    padding-top: 56px;
+    flex-grow: 1;
+    display: grid;
+    grid-column-gap: 160px;
+    grid-row-gap: 29px;
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: repeat(3, max-content);
+  }
+
+  &__heading {
+    color: @color-light-xl;
+    padding-bottom: 3.5px;
+  }
+
+  &__item {
+    color: @color-primary;
+    display: flex;
+    align-items: center;
+    .icon {
+      font-size: 40px;
+      margin-right: 18px;
+    }
+    .icon-pin {
+      font-size: 32px;
+    }
+  }
+
+  &__img {
+    margin-top: 40px;
+    display: block;
+    width: 300px;
   }
 }
