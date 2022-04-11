@@ -1191,6 +1191,7 @@ a {
   align-items: center;
 }
 .our-friends__slider-arrow {
+  color: #292929;
   width: 52px;
   height: 52px;
   border-radius: 52px;
@@ -1250,6 +1251,7 @@ a {
 .help__item-icon {
   font-size: 60px;
   margin-bottom: 23px;
+  color: #f1cdb3;
 }
 .help__item-caption {
   color: #545454;
@@ -1274,9 +1276,11 @@ a {
 }
 .donation__heading {
   margin-bottom: 20px;
+  color: #545454;
 }
 .donation__subheading {
   margin-bottom: 20px;
+  color: #545454;
 }
 .donation__card {
   margin-bottom: 20px;
@@ -1294,9 +1298,11 @@ a {
 }
 .donation__icon {
   font-size: 23px;
+  color: #292929;
 }
 .donation__card-number {
   margin-left: 14.5px;
+  color: #545454;
 }
 .donation__information {
   color: #b2b2b2;
@@ -1347,6 +1353,7 @@ a {
 .pets__heading {
   text-align: center;
   margin-bottom: 60px;
+  color: #545454;
 }
 .pets__items-container {
   display: flex;
@@ -1371,6 +1378,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: default;
 }
 .pets__paginator-btn_inactive {
   color: #cdcdcd;
