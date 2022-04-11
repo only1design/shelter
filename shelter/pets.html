@@ -12,36 +12,34 @@
 
 <body>
 
-  <div class="header-sticky-wrapper">
-    <div class="wrapper">
-      <header class="header header_alt">
-        <a href="index.html" class="logo">
-          <h1 class="logo__title logo__title_dark">Cozy House</h1>
-          <p class="logo__subtitle logo__subtitle_dark">Shelter for pets in Boston</p>
-        </a>
+  <header class="header header_sticky">
+    <div class="header__wrapper header__wrapper_alt wrapper">
+      <a href="index.html" class="logo">
+        <h1 class="logo__title logo__title_dark">Cozy House</h1>
+        <p class="logo__subtitle logo__subtitle_dark">Shelter for pets in Boston</p>
+      </a>
 
-        <nav class="nav">
-          <ul class="nav__list">
-            <li class="nav__list-item nav__list-item_dark paragraph-l">
-              <a href="index.html">About the shelter</a>
-            </li>
-            <li class="nav__list-item nav__list-item_dark paragraph-l nav__list-item_dark-active">
-              <span>Our pets</span>
-            </li>
-            <li class="nav__list-item nav__list-item_dark paragraph-l">
-              <a href="index.html#help">Help the shelter</a>
-            </li>
-            <li class="nav__list-item nav__list-item_dark paragraph-l">
-              <a href="#footer">Contacts</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__list-item nav__list-item_dark paragraph-l">
+            <a href="index.html">About the shelter</a>
+          </li>
+          <li class="nav__list-item nav__list-item_dark paragraph-l nav__list-item_dark-active">
+            <span>Our pets</span>
+          </li>
+          <li class="nav__list-item nav__list-item_dark paragraph-l">
+            <a href="index.html#help">Help the shelter</a>
+          </li>
+          <li class="nav__list-item nav__list-item_dark paragraph-l">
+            <a href="#footer">Contacts</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <div class="light-l-bg">
-    <section class="pets wrapper">
+  <section class="pets light-l-bg">
+    <div class="pets__wrapper wrapper">
       <h2 class="pets__heading header-3">Our friends who<br> are looking for a house</h2>
       <div class="pets__items-container">
         <div class="pets__item">
@@ -50,7 +48,7 @@
               <img src="styles/img/pets/katrine.png" alt="Katrine">
             </div>
             <p class="pet-card__name">Katrine</p>
-            <a href="" class="pet-card__btn button-secondary">Learn more</a>
+            <div class="pet-card__btn button-secondary">Learn more</div>
           </div>
         </div>
 
@@ -60,7 +58,7 @@
               <img src="styles/img/pets/jennifer.png" alt="Jennifer">
             </div>
             <p class="pet-card__name">Jennifer</p>
-            <a href="" class="pet-card__btn button-secondary">Learn more</a>
+            <div class="pet-card__btn button-secondary">Learn more</div>
           </div>
         </div>
 
@@ -70,7 +68,7 @@
               <img src="styles/img/pets/woody.png" alt="Woody">
             </div>
             <p class="pet-card__name">Woody</p>
-            <a href="" class="pet-card__btn button-secondary">Learn more</a>
+            <div class="pet-card__btn button-secondary">Learn more</div>
           </div>
         </div>
 
@@ -80,7 +78,7 @@
               <img src="styles/img/pets/sophia.png" alt="Sophia">
             </div>
             <p class="pet-card__name">Sophia</p>
-            <a href="" class="pet-card__btn button-secondary">Learn more</a>
+            <div class="pet-card__btn button-secondary">Learn more</div>
           </div>
         </div>
 
@@ -90,7 +88,7 @@
               <img src="styles/img/pets/timmy.png" alt="Timmy">
             </div>
             <p class="pet-card__name">Timmy</p>
-            <a href="" class="pet-card__btn button-secondary">Learn more</a>
+            <div class="pet-card__btn button-secondary">Learn more</div>
           </div>
         </div>
 
@@ -100,7 +98,7 @@
               <img src="styles/img/pets/charly.png" alt="Charly">
             </div>
             <p class="pet-card__name">Charly</p>
-            <a href="" class="pet-card__btn button-secondary">Learn more</a>
+            <div class="pet-card__btn button-secondary">Learn more</div>
           </div>
 
         </div>
@@ -111,7 +109,7 @@
               <img src="styles/img/pets/scarlett.png" alt="Scarlett">
             </div>
             <p class="pet-card__name">Scarlett</p>
-            <a href="" class="pet-card__btn button-secondary">Learn more</a>
+            <div class="pet-card__btn button-secondary">Learn more</div>
           </div>
         </div>
 
@@ -121,23 +119,23 @@
               <img src="styles/img/pets/freddie.png" alt="Freddie">
             </div>
             <p class="pet-card__name">Freddie</p>
-            <a href="" class="pet-card__btn button-secondary">Learn more</a>
+            <div class="pet-card__btn button-secondary">Learn more</div>
           </div>
         </div>
 
       </div>
       <div class="pets__paginator">
-        <div class="pets__paginator-btn pets__paginator-btn_inactive"><<</div>
-        <div class="pets__paginator-btn pets__paginator-btn_inactive header-4"><</div>
+        <div class="pets__paginator-btn pets__paginator-btn_inactive header-4">&lt;&lt;</div>
+        <div class="pets__paginator-btn pets__paginator-btn_inactive header-4">&lt;</div>
         <div class="pets__paginator-btn header-4">1</div>
         <div class="pets__paginator-btn pets__paginator-btn_active header-4">></div>
         <div class="pets__paginator-btn pets__paginator-btn_active header-4">>></div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <footer class="footer-bg">
-    <div class="footer wrapper" id="footer">
+  <footer class="footer">
+    <div class="footer__wrapper wrapper" id="footer">
       <div class="footer__content">
         <h3 class="footer__heading header-3">For questions<br> and suggestions</h3>
         <h3 class="footer__heading header-3">We are waiting<br> for your visit</h3>

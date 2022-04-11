@@ -1,0 +1,39 @@
+@import url('../abstract/_variables.less');
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+  &__title {
+    font-family: @georgia;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 110%;
+
+    letter-spacing: 0.06em;
+
+    color: @color-primary;
+    &_dark {
+      color: @color-dark-l;
+    }
+  }
+  &__subtitle {
+    font-family: @arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+
+    letter-spacing: 0.1em;
+
+    color: @color-light-xl;
+    &_dark {
+      color: @color-dark-3xl;
+    }
+  }
+}

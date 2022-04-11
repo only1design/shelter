@@ -1,0 +1,37 @@
+@import url('../abstract/_variables.less');
+
+.nav {
+
+  &__list {
+    display: flex;
+    column-gap: 36px;
+  }
+
+  &__list-item {
+    color: @color-dark-s;
+    position: relative;
+    
+    &_active {
+      color: @color-light-s;
+      border-bottom: 3px solid @color-primary;
+      cursor: default;
+    }
+    &:hover {
+      color: @color-light-s;
+    }
+
+    &_dark {
+      color: @color-dark-l;
+
+      &:hover {
+        color: @color-dark-3xl;
+      }
+    }
+
+    &_dark-active {
+      color: @color-dark-3xl;
+      border-bottom: 3px solid @color-primary;
+      cursor: default;
+    }
+  }
+}

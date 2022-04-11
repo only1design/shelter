@@ -1,7 +1,20 @@
-@import (less) "_normalize.css";
-@import (less) "_resset.css";
-@import (less) "_fonts.less";
-@import (less) "_icons.less";
-@import (less) "_elements.less";
-@import (less) "_style.less";
-@import (less) "_media.less";
+@import (inline) url('./less/base/_normalize.css');
+@import (inline) url('./less/base/_resset.css');
+@import url('./less/base/_fonts.less');
+@import url('./less/base/_icons.less');
+@import url('./less/base/_base.less');
+
+// components
+@import url('./less/components/_elements.less');
+@import url('./less/components/_header.less');
+@import url('./less/components/_start-screen.less');
+@import url('./less/components/_about.less');
+@import url('./less/components/_our-friends.less');
+@import url('./less/components/_help.less');
+@import url('./less/components/_donation.less');
+@import url('./less/components/_footer.less');
+@import url('./less/components/_logo.less');
+@import url('./less/components/_nav.less');
+@import url('./less/components/_pets.less');
+@import url('./less/components/_pet-card.less');
+@import url('./less/components/_media.less');

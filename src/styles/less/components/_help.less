@@ -1,0 +1,36 @@
+@import url('../abstract/_variables.less');
+
+.help {
+  padding-top: 80px;
+  padding-bottom: 101.4px;
+  box-sizing: border-box;
+  &__heading {
+    text-align: center;
+    margin-bottom: 60px;
+    color: @color-dark-l;
+  }
+
+  &__items-container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 57px;
+    column-gap: 119.5px;
+    justify-content: center;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__item-icon {
+    font-size: 60px;
+    margin-bottom: 23px;
+    color: @color-primary;
+  }
+
+  &__item-caption {
+    color: @color-dark-l;
+  }
+}

@@ -1,0 +1,66 @@
+@import url('../abstract/_variables.less');
+
+.donation {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    width: 915px;
+    margin: 0 auto;
+    padding: 80px 0 99.5px;
+    box-sizing: border-box;
+  }
+
+  &__img {
+    width: 505px;
+    display: block;
+    flex: 1 1 auto;
+  }
+
+  &__content {
+    width: 380px;
+    margin-left: 30px;
+  }
+
+  &__heading {
+    margin-bottom: 20px;
+    color: @color-dark-l;
+  }
+
+  &__subheading {
+    margin-bottom: 20px;
+    color: @color-dark-l;
+  }
+
+  &__card {
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    background-color: @color-primary;
+    border-radius: 9px;
+    padding: 10px 15px;
+
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      transition: all 0.1s ease-in-out;
+      background-color: @color-primary-light;
+    }
+  }
+
+  &__icon {
+    font-size: 23px;
+    color: @color-dark-3xl;
+  }
+
+  &__card-number {
+    margin-left: 14.5px;
+    color: @color-dark-l;
+    margin-top: -1px;
+  }
+
+  &__information {
+    color: @color-dark-m;
+  }
+}

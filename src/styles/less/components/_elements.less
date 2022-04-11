@@ -1,4 +1,13 @@
-@import (less) url("_variables");
+@import (less) url("../abstract/_variables.less");
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.light-l-bg {
+  background-color: @color-light-l;
+}
 
 .header-2 {
   font-family: @georgia;
@@ -19,7 +28,6 @@
     font-size: 25px;
   }
 }
-
 .header-4 {
   font-family: @georgia;
   font-style: normal;
@@ -40,6 +48,7 @@
     font-weight: 700;
   }
 }
+
 .paragraph-l {
   font-family: @arial;
   font-style: normal;
@@ -63,7 +72,8 @@
 }
 
 .button-primary {
-  display: block;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
 
   height: 52px;
@@ -73,11 +83,10 @@
   background-color: @color-primary;
 
   font-family: @georgia;
+  font-weight: 400;
   font-size: 17px;
-  line-height: 52px;
   letter-spacing: 0.06em;
   color: @color-dark-3xl;
-  font-weight: 400;
 
   transition: all 0.1s ease-in-out;
   &:hover {
@@ -85,23 +94,22 @@
     background-color: @color-primary-light;
   }
 }
-
 .button-secondary {
-  display: block;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
 
   height: 52px;
   width: fit-content;
-  border: 2px solid @color-primary;
   border-radius: 100px;
-  padding: 0 43px;
+  padding: 0 42.7px;
+  border: 2px solid @color-primary;
 
   font-family: @georgia;
+  font-weight: 400;
   font-size: 17px;
-  line-height: 52px;
   letter-spacing: 0.06em;
   color: @color-dark-3xl;
-  font-weight: 400;
 
   transition: all 0.1s ease-in-out;
   &:hover {
@@ -109,54 +117,5 @@
     border-color: @color-primary-light;
     background-color: @color-primary-light;
     color: @color-dark-3xl;
-  }
-}
-
-.light-l-bg {
-  background-color: @color-light-l;
-}
-
-.pet-card {
-  display: flex;
-  width: min-content;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 30px;
-  background-color: @color-light-s;
-  border-radius: 9px;
-  cursor: pointer;
-
-  &:hover {
-    transition: all 0.1s ease-in-out;
-    background-color: @color-light-xl;
-  }
-  
-  &__btn {
-    transition: all 0.1s ease-in-out;
-    color: @color-dark-3xl;
-  }
-
-  &:hover .pet-card__btn {
-    transition: all 0.1s ease-in-out;
-    border-color: @color-primary-light;
-    background-color: @color-primary-light;
-    color: @color-dark-3xl;
-  }
-
-  &__img {
-    margin-bottom: 30px;
-    img {
-      border-radius: 9px 9px 0 0;
-    }
-  }
-
-  &__name {
-    margin-bottom: 30px;
-    font-family: @georgia;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 23px;
-    color: @color-dark-l;
-    letter-spacing: 0.06em;
   }
 }

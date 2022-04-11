@@ -1,0 +1,37 @@
+@import url('../abstract/_variables.less');
+
+.start-screen {
+  background-image: url("@styles/img/start-screen/start-screen-gradient-background.jpg");
+  background-size: cover;
+
+  &__wrapper {
+    display: flex;
+  }
+  
+  &__desc {
+    padding-top: 163px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 42px;
+    width: 460px;
+  }
+
+  &__heading {
+    margin-bottom: 42px;
+    color: @color-light-xl;
+  }
+
+  &__subheading {
+    margin-bottom: 42px;
+    color: @color-dark-s;
+  }
+
+  &__img {
+    width: 698px;
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+}

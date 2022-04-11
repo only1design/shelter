@@ -1,0 +1,67 @@
+@import url('../abstract/_variables.less');
+
+.our-friends {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+
+  &__heading-box {
+    text-align: center;
+    width: 400px;
+  }
+
+  &__heading {
+    color: @color-dark-l;
+  }
+
+  &__slider {
+    padding-top: 60px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  &__slider-arrow {
+    color: @color-dark-3xl;
+    width: 52px;
+    height: 52px;
+    border-radius: 52px;
+    border: 2px solid @color-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 6px;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+      transition: all 0.1s ease-in-out;
+      background-color: @color-primary-light;
+      border-color: @color-primary-light;
+    }
+
+    &_inactive {
+      cursor: default !important;
+      color: @color-dark-s !important;
+      border-color: @color-dark-s !important;
+      background-color: transparent !important;
+    }
+  }
+
+  &__slider-items-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 53px;
+  }
+
+  &__btn {
+    margin-top: 59px;
+  }
+}

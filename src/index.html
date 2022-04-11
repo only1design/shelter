@@ -12,31 +12,33 @@
 
 <body>
 
-  <div class="start-screen-bg">
-    <header class="header wrapper">
-      <a href="index.html" class="logo">
-        <h1 class="logo__title">Cozy House</h1>
-        <p class="logo__subtitle">Shelter for pets in Boston</p>
-      </a>
-
-      <nav class="nav">
-        <ul class="nav__list">
-          <li class="nav__list-item paragraph-l nav__list-item_active">
-            <span>About the shelter</span>
-          </li>
-          <li class="nav__list-item paragraph-l">
-            <a href="pets.html">Our pets</a>
-          </li>
-          <li class="nav__list-item paragraph-l">
-            <a href="#help">Help the shelter</a>
-          </li>
-          <li class="nav__list-item paragraph-l">
-            <a href="#footer">Contacts</a>
-          </li>
-        </ul>
-      </nav>
+  <section class="start-screen">
+    <header class="header">
+      <div class="header__wrapper wrapper">
+        <a href="index.html" class="logo">
+          <h1 class="logo__title">Cozy House</h1>
+          <p class="logo__subtitle">Shelter for pets in Boston</p>
+        </a>
+  
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__list-item paragraph-l nav__list-item_active">
+              <span>About the shelter</span>
+            </li>
+            <li class="nav__list-item paragraph-l">
+              <a href="pets.html">Our pets</a>
+            </li>
+            <li class="nav__list-item paragraph-l">
+              <a href="#help">Help the shelter</a>
+            </li>
+            <li class="nav__list-item paragraph-l">
+              <a href="#footer">Contacts</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
-    <section class="start-screen wrapper">
+    <div class="start-screen__wrapper wrapper">
 
       <div class="start-screen__desc">
         <h2 class="start-screen__heading header-2">Not only people<br> need a house</h2>
@@ -50,8 +52,8 @@
       <div class="start-screen__img">
         <img src="@styles/img/start-screen/start-screen-puppy.jpg" alt="Puppy">
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <section class="about wrapper" id="about">
     <div class="about__img">
@@ -74,8 +76,8 @@
     </div>
   </section>
 
-  <div class="light-l-bg">
-    <section class="our-friends wrapper" id="our-friends">
+  <section class="our-friends light-l-bg" id="our-friends">
+    <div class="our-friends__wrapper wrapper">
       <div class="our-friends__heading-box">
         <h3 class="our-friends__heading header-3">Our friends who<br>are looking for a house</h3>
       </div>
@@ -92,7 +94,7 @@
                 <img src="@styles/img/pets/katrine.png" alt="Katrine">
               </div>
               <p class="pet-card__name">Katrine</p>
-              <a href="" class="pet-card__btn button-secondary">Learn more</a>
+              <div class="pet-card__btn button-secondary">Learn more</div>
             </div>
           </div>
 
@@ -102,7 +104,7 @@
                 <img src="@styles/img/pets/jennifer.png" alt="Jennifer">
               </div>
               <p class="pet-card__name">Jennifer</p>
-              <a href="" class="pet-card__btn button-secondary">Learn more</a>
+              <div class="pet-card__btn button-secondary">Learn more</div>
             </div>
           </div>
 
@@ -112,7 +114,7 @@
                 <img src="@styles/img/pets/woody.png" alt="Woody">
               </div>
               <p class="pet-card__name">Woody</p>
-              <a href="" class="pet-card__btn button-secondary">Learn more</a>
+              <div class="pet-card__btn button-secondary">Learn more</div>
             </div>
           </div>
 
@@ -124,8 +126,8 @@
       </div>
 
       <a href="pets.html" class="our-friends__btn button-primary">Get to know the rest</a>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <section class="help wrapper" id="help">
     <div class="help__heading">
@@ -189,8 +191,8 @@
     </div>
   </section>
 
-  <div class="light-l-bg">
-    <section class="donation wrapper">
+  <section class="donation light-l-bg">
+    <div class="donation__wrapper wrapper">
       <img class="donation__img" src="@styles/img/donations/donation-dog.png" alt="Dog">
       <div class="donation__content">
         <h3 class="donation__heading header-3">You can also<br> make a donation</h3>
@@ -205,11 +207,11 @@
           Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate.
           Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
-  <footer class="footer-bg">
-    <div class="footer wrapper" id="footer">
+  <footer class="footer">
+    <div class="footer__wrapper wrapper" id="footer">
       <div class="footer__content">
         <h3 class="footer__heading header-3">For questions<br> and suggestions</h3>
         <h3 class="footer__heading header-3">We are waiting<br> for your visit</h3>
