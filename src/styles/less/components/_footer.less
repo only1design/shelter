@@ -1,4 +1,5 @@
 @import url('../abstract/_variables.less');
+@import url('../abstract/_mixins.less');
 
 .footer{
   background: url("@styles/img/start-screen/noise-transparent-2.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;;
@@ -7,12 +8,22 @@
     display: flex;
     justify-content: space-between;
     padding-top: 40px;
+
+    .media-1280({
+      flex-wrap: wrap;
+      padding: 30px 34px 0;
+    })
   }
   &__col {
     display: flex;
     flex-direction: column;
     padding-top: 15px;
     row-gap: 40px;
+
+    .media-1280({
+      padding: 0;
+      row-gap: 39px;
+    })
   }
 
   &__heading {
@@ -34,6 +45,10 @@
         font-size: 32px;
         padding-left: 1px;
       }
+
+      .media-1280({
+        width: 302px;
+      })
     }
   }
 
@@ -44,9 +59,21 @@
 
   &__img {
     padding-left: 7px;
+
+    .media-1280({
+      padding: 0;
+      margin: 65px auto 0;
+      width: 100%;
+    });
+
     img {
       display: block;
       width: 300px;
+
+      .media-1280({
+        display: block;
+        margin: 0 auto;
+      })
     }
   }
 }

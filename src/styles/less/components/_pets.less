@@ -1,4 +1,5 @@
 @import url('../abstract/_variables.less');
+@import url('../abstract/_mixins.less');
 
 .pets {
   &__wrapper {
@@ -6,12 +7,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .media-1280({
+      padding-bottom: 76px;
+    })
   }
 
   &__heading {
     text-align: center;
     margin-bottom: 60px;
     color: @color-dark-l;
+
+    .media-1280({
+      margin-bottom: 30px;
+    })
   }
 
   &__items-container {
@@ -19,12 +28,34 @@
     flex-wrap: wrap;
     justify-content: space-between;
     row-gap: 30px;
+
+    .media-1280({
+      padding: 0 44px;
+    })
+  }
+
+  &__item {
+    .media-1280({
+      width: 50%;
+      display: flex;
+      justify-content: space-around;
+    });
+
+    &:nth-child(n+7) {
+      .media-1280({
+        display: none;
+      });
+    }
   }
 
   &__paginator {
     margin-top: 60px;
     display: flex;
     column-gap: 20px;
+
+    .media-1280({
+      margin-top: 39px;
+    })
   }
 
   &__paginator-btn {

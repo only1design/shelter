@@ -1,22 +1,44 @@
 @import url('../abstract/_variables.less');
+@import url('../abstract/_mixins.less');
 
 .about {
   display: flex;
   padding: 80px 0 100px;
+
+  .media-1280({
+    flex-direction: column-reverse;
+    align-items: center;
+  });
+
   &__img {
     width: 300px;
     padding-left: 175px;
     padding-right: 120px;
+
+    .media-1280({
+      padding: 0;
+    })
   }
 
   &__desc {
     width: 605px;
     padding-right: 175px;
+
+    .media-1280({
+      width: 430px;
+      padding: 0;
+      order: 1;
+      margin-bottom: 80px;
+    })
   }
 
   &__heading {
     color: @color-dark-l;
     padding-top: 14px;
+
+    .media-1280({
+      padding: 0;
+    })
   }
 
   &__subheading {

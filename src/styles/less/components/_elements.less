@@ -1,8 +1,14 @@
-@import (less) url("../abstract/_variables.less");
+@import url('../abstract/_variables.less');
+@import url('../abstract/_mixins.less');
 
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
+
+  .media-1280({
+    max-width: unset;
+    margin: 0 30px;
+  })
 }
 
 .light-l-bg {

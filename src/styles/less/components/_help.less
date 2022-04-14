@@ -1,4 +1,5 @@
 @import url('../abstract/_variables.less');
+@import url('../abstract/_mixins.less');
 
 .help {
   padding-top: 80px;
@@ -16,12 +17,23 @@
     row-gap: 57px;
     column-gap: 119.5px;
     justify-content: center;
+
+    .media-1280({
+      padding: 0px 9px;
+      margin: 0 auto;
+      column-gap: unset;
+      justify-content: space-between;
+    })
   }
 
   &__item {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .media-1280({
+      width: 33.3333%;
+    })
   }
 
   &__item-icon {

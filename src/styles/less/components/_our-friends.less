@@ -1,6 +1,13 @@
 @import url('../abstract/_variables.less');
+@import url('../abstract/_mixins.less');
 
 .our-friends {
+
+  .media-1280({
+    display: flex;
+    justify-content: center;
+  });
+
   &__wrapper {
     display: flex;
     align-items: center;
@@ -59,6 +66,19 @@
     width: 100%;
     justify-content: space-between;
     padding: 0 53px;
+
+    .media-1280({
+      column-gap: 40px;
+      padding: 0 12px;
+    })
+  }
+
+  &__slider-item {
+    &:nth-child(3) {
+      .media-1280({
+        display: none;
+      })
+    }
   }
 
   &__btn {
