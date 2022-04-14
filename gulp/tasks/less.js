@@ -1,6 +1,7 @@
 import gulpLess from "gulp-less"; //less preprocessor
 import gulpSourcemaps from "gulp-sourcemaps"; //sourcemaps
 import autoprefixer from "gulp-autoprefixer"; //adding vendor prefixes
+import groupCssMediaQueries from 'gulp-group-css-media-queries'; //grouping media queries
 
 export const less = () => {
   return (
@@ -27,6 +28,8 @@ export const less = () => {
       //       cascade: true,
       //     })
       //   )
+      // Group Media Queries
+      .pipe(groupCssMediaQueries())
 
       // CSS Sourcemap
       .pipe(gulpSourcemaps.write("/"))
