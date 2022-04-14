@@ -1,42 +1,52 @@
 @import url('../abstract/_variables.less');
 
 .footer{
-  background: url("@styles/img/footer/footer-background.jpg"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;;
-  background-size: cover;
+  background: url("@styles/img/start-screen/noise-transparent-2.png"), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;;
+  background-repeat: repeat;
   &__wrapper {
     display: flex;
+    justify-content: space-between;
+    padding-top: 40px;
   }
-  &__content {
-    padding-top: 56px;
-    flex-grow: 1;
-    display: grid;
-    grid-column-gap: 160px;
-    grid-row-gap: 29px;
-    grid-template-columns: repeat(2, max-content);
-    grid-template-rows: repeat(3, max-content);
+  &__col {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+    row-gap: 40px;
   }
 
   &__heading {
     color: @color-light-xl;
-    padding-bottom: 3.5px;
   }
 
   &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
     color: @color-primary;
     display: flex;
     align-items: center;
-    .icon {
-      font-size: 40px;
-      margin-right: 18px;
-    }
-    .icon-pin {
-      font-size: 32px;
+    height: 32px;
+    &_adress {
+      .footer__icon {
+        font-size: 32px;
+        padding-left: 1px;
+      }
     }
   }
 
+  &__icon {
+    font-size: 40px;
+    margin-right: 18px;
+  }
+
   &__img {
-    margin-top: 40px;
-    display: block;
-    width: 300px;
+    padding-left: 7px;
+    img {
+      display: block;
+      width: 300px;
+    }
   }
 }

@@ -1,0 +1,140 @@
+@import url('../abstract/_variables.less');
+
+@media (max-width: 1280px) {
+  .wrapper {
+    max-width: unset;
+    margin: 0 30px;
+  }
+
+  .header {
+    &__wrapper {
+      padding: 30px 0;
+    }
+  }
+
+  .start-screen {
+    &__wrapper {
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+    }
+    &__desc {
+      padding: 0;
+      margin-bottom: 100px;
+      display: flex;
+      flex-direction: column;
+    }
+    &__btn {
+      align-self: center;
+    }
+    &__img {
+      width: 100%;
+      max-width: 708px;
+      display: flex;
+      justify-content: end;
+      img {
+        width: 80.3673%;
+      }
+    }
+  }
+
+  .about {
+    flex-direction: column-reverse;
+    align-items: center;
+    &__desc {
+      width: 430px;
+      padding: 0;
+      order: 1;
+      margin-bottom: 80px;
+    }
+    &__heading {
+      padding: 0;
+    }
+    &__img {
+      padding: 0;
+    }
+  }
+
+  .our-friends {
+    display: flex;
+    justify-content: center;
+
+    &__slider-items-container {
+      column-gap: 40px;
+      padding: 0 12px;
+    }
+    &__slider-item:nth-child(3) {
+      display: none;
+    }
+  }
+
+  .help {
+    &__item {
+      width: 33.3333%;
+    }
+    &__items-container {
+      padding: 0px 9px;
+      margin: 0 auto;
+      column-gap: unset;
+      justify-content: space-between;
+    }
+  }
+
+  .donation {
+    &__wrapper {
+      width: unset;
+      flex-direction: column-reverse;
+    }
+    &__content {
+      margin: 0 0 60px;
+    }
+  }
+
+  .footer {
+    &__wrapper {
+      flex-wrap: wrap;
+      padding: 30px 34px 0;
+    }
+    &__col {
+      padding: 0;
+      row-gap: 39px;
+    }
+    &__link {
+      &_adress {
+        width: 302px;
+      }
+    }
+    &__img {
+      padding: 0;
+      margin: 65px auto 0;
+      width: 100%;
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .pets {
+    &__wrapper {
+      padding-bottom: 76px;
+    }
+    &__heading {
+      margin-bottom: 30px;
+    }
+    &__items-container {
+      padding: 0 44px;
+    }
+    &__item {
+      width: 50%;
+      display: flex;
+      justify-content: space-around;
+      &:nth-child(n+7) {
+        display: none;
+      }
+    }
+    &__paginator {
+      margin-top: 39px;
+    }
+  }
+}
