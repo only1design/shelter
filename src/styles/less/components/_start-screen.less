@@ -22,11 +22,17 @@
     padding-right: 42px;
     width: 460px;
     .media-1280({
+      width: unset;
+      max-width: 460px;
       padding: 0;
       margin-bottom: 100px;
       display: flex;
       flex-direction: column;
-    })
+    });
+
+    .media-768({
+      margin-bottom: 105px;
+    });
   }
 
   &__btn {
@@ -38,11 +44,19 @@
   &__heading {
     margin-bottom: 42px;
     color: @color-light-xl;
+
+    .media-768({
+      text-align: center;
+    });
   }
 
   &__subheading {
     margin-bottom: 42px;
     color: @color-dark-s;
+
+    .media-768({
+      text-align: center;
+    });
   }
 
   &__img {
@@ -60,7 +74,14 @@
       img {
         width: 80.3673%;
       }
-    })
+    });
+
+    .media-768({
+      max-width: 460px;
+      img {
+        width: 86.66666%;
+      }
+    });
   }
 
 }

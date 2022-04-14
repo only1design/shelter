@@ -10,6 +10,10 @@
     align-items: center;
   });
 
+  .media-768({
+    padding: 42px 0;
+  });
+
   &__img {
     width: 300px;
     padding-left: 175px;
@@ -17,7 +21,16 @@
 
     .media-1280({
       padding: 0;
-    })
+    });
+
+    .media-768({
+      width: 260px;
+      
+        img {
+          display: block;
+          width: 100%;
+        }
+    });
   }
 
   &__desc {
@@ -29,7 +42,16 @@
       padding: 0;
       order: 1;
       margin-bottom: 80px;
-    })
+    });
+
+    .media-768 ({
+      padding: 0 15px;
+      width: 100%;
+      max-width: 430px;
+      box-sizing: border-box;
+      text-align: justify;
+      margin-bottom: 41px;
+    });
   }
 
   &__heading {
@@ -38,11 +60,20 @@
 
     .media-1280({
       padding: 0;
-    })
+    });
+
+    .media-768({
+      text-align: center;
+      padding-bottom: 2px;
+    });
   }
 
   &__subheading {
     padding-top: 24.5px;
     color: @color-dark-xl;
+
+    .media-768({
+      padding-top: 22px;
+    })
   }
 }

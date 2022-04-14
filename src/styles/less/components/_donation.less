@@ -13,13 +13,21 @@
     .media-1280({
       width: unset;
       flex-direction: column-reverse;
-    })
+    });
+
+    .media-768({
+      padding: 42px 0;
+    });
   }
 
   &__img {
     width: 505px;
     display: block;
     flex: 1 1 auto;
+
+    .media-768({
+      width: 260px;
+    })
   }
 
   &__content {
@@ -28,17 +36,36 @@
 
     .media-1280({
       margin: 0 0 60px;
+    });
+
+    .media-768({
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 42px;
     })
   }
 
   &__heading {
     margin-bottom: 20px;
     color: @color-dark-l;
+
+    .media-768({
+      text-align: center;
+    });
   }
 
   &__subheading {
     margin-bottom: 20px;
     color: @color-dark-l;
+
+    .media-768({
+      text-align: center;
+      font-size: 15px;
+      letter-spacing: unset;
+      line-height: 150%;
+    });
   }
 
   &__card {
@@ -52,6 +79,8 @@
     padding: 10px 15px;
 
     transition: all 0.1s ease-in-out;
+
+    white-space: nowrap;
 
     &:hover {
       transition: all 0.1s ease-in-out;
@@ -68,9 +97,17 @@
     margin-left: 14.5px;
     color: @color-dark-l;
     margin-top: -1px;
+
+    .media-768({
+      font-size: 15px;
+    })
   }
 
   &__information {
     color: @color-dark-m;
+
+    .media-768({
+      text-align: justify;
+    });
   }
 }

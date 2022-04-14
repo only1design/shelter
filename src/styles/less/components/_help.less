@@ -5,10 +5,19 @@
   padding-top: 80px;
   padding-bottom: 101.4px;
   box-sizing: border-box;
+
+  .media-768({
+    padding: 42px 0;
+  });
+
   &__heading {
     text-align: center;
     margin-bottom: 60px;
     color: @color-dark-l;
+
+    .media-768({
+      margin-bottom: 42px;
+    });
   }
 
   &__items-container {
@@ -23,7 +32,13 @@
       margin: 0 auto;
       column-gap: unset;
       justify-content: space-between;
-    })
+    });
+
+    .media-768({
+      row-gap: 31px;
+      padding: 0;
+      max-width: 430px;
+    });
   }
 
   &__item {
@@ -33,16 +48,29 @@
 
     .media-1280({
       width: 33.3333%;
-    })
+    });
+
+    .media-768({
+      width: 46.6%;
+    });
   }
 
   &__item-icon {
     font-size: 60px;
     margin-bottom: 23px;
     color: @color-primary;
+
+    .media-768({
+      font-size: 50px;
+      margin-bottom: 14px;
+    });
   }
 
   &__item-caption {
     color: @color-dark-l;
+
+    .media-768({
+      font-size: 15px;
+    });
   }
 }

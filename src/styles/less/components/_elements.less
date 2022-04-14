@@ -8,7 +8,11 @@
   .media-1280({
     max-width: unset;
     margin: 0 30px;
-  })
+  });
+
+  .media-768({
+    margin: 0 10px;
+  });
 }
 
 .light-l-bg {
@@ -21,6 +25,12 @@
   font-weight: 400;
   font-size: 44px;
   line-height: 130%;
+
+  .media-768({
+    font-size: 25px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+  });
 }
 .header-3 {
   font-family: @georgia;
@@ -30,9 +40,9 @@
   line-height: 130%;
   letter-spacing: 0.06em;
 
-  &_mobile {
+  .media-768({
     font-size: 25px;
-  }
+  });
 }
 .header-4 {
   font-family: @georgia;
