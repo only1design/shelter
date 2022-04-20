@@ -20,6 +20,7 @@ import { copyJs } from './gulp/tasks/copyJs.js';
 import { copyHtml } from './gulp/tasks/copyHtml.js';
 import { copyImg } from './gulp/tasks/copyImg.js';
 import { copyFonts } from './gulp/tasks/copyFonts.js';
+import { copyFiles } from './gulp/tasks/copyFiles.js';
 import { less } from './gulp/tasks/less.js';
 import { server } from './gulp/tasks/server.js';
 
@@ -30,11 +31,12 @@ function watcher() {
   gulp.watch(path.watch.htmlFiles, copyHtml);
   gulp.watch(path.watch.fontsFiles, copyFonts);
   gulp.watch(path.watch.imgFiles, copyImg);
+  gulp.watch(path.watch.otherFiles, copyFiles);
   gulp.watch(path.watch.lessFiles, less);
 }
 
 // Main tasks
-const mainTasks = gulp.parallel(copyJs, copyHtml, copyFonts, copyImg, less);
+const mainTasks = gulp.parallel(copyJs, copyHtml, copyFonts, copyImg, less, copyFiles);
 
 // Building a task execution script
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
