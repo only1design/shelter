@@ -1,3 +1,5 @@
+import fileInclude from "gulp-file-include";
+
 export const copyHtml = () => {
     return app.gulp.src(app.path.src.htmlFiles)
         .pipe(app.plugins.plumber(
@@ -7,7 +9,10 @@ export const copyHtml = () => {
             })
         ))
 
-        // // Replace path autocomplete alias
+        // Include html parts
+        .pipe(fileInclude())
+
+        // Replace path autocomplete alias
         .pipe(app.plugins.replace(/@styles\//g, 'styles/'))
         .pipe(app.gulp.dest(app.path.build.htmlFolder))
 

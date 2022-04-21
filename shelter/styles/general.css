@@ -1115,6 +1115,25 @@ a {
   color: #292929;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.fade-in {
+  transition: all 0.1s ease-in-out;
+  opacity: 1;
+}
+
+.fade-out {
+  transition: all 0.1s ease-in-out;
+  opacity: 0;
+}
+
+.header {
+  position: relative;
+  z-index: 10;
+}
+
 .header_sticky {
   position: sticky;
   top: 0;
@@ -1134,6 +1153,7 @@ a {
 
 .header__burger {
   display: none;
+  transition: all 0.1s ease-in-out;
 }
 
 .header__burger_active {
@@ -1184,6 +1204,13 @@ a {
 
 .header__burger-icon_dark::after {
   background-color: #292929;
+}
+
+.header__side-menu {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .start-screen {
@@ -1515,6 +1542,7 @@ a {
 .nav__list-item {
   color: #cdcdcd;
   position: relative;
+  white-space: nowrap;
 }
 
 .nav__list-item_active {
@@ -1539,6 +1567,51 @@ a {
   color: #292929;
   border-bottom: 3px solid #f1cdb3;
   cursor: default;
+}
+
+.side-menu {
+  background: rgba(41, 41, 41, 0.6);
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: end;
+}
+
+.side-menu__screen {
+  width: 320px;
+  background: #292929;
+  position: relative;
+  transition: all 0.1s ease-in-out;
+  right: 0;
+  display: block;
+}
+
+.side-menu__screen_slide-in {
+  right: 0;
+}
+
+.side-menu__screen_slide-out {
+  right: -320px;
+}
+
+.side-menu__screen_light {
+  background: #ffffff;
+}
+
+.side-menu__header {
+  padding: 30px 0;
+}
+
+.side-menu__links-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .pets__wrapper {
@@ -1808,11 +1881,12 @@ a {
     font-size: 25px;
   }
 
-  .header__wrapper {
-    justify-content: flex-end;
+  .header__wrapper .nav {
+    display: none;
   }
 
   .header__burger {
+    z-index: 100;
     display: flex;
     height: 22px;
     width: 30px;
@@ -2008,8 +2082,15 @@ a {
     width: 260px;
   }
 
-  .nav {
-    display: none;
+  .nav__list {
+    font-size: 32px;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+  }
+
+  .nav__list-item {
+    font-size: 32px;
   }
 
   .pets__wrapper {

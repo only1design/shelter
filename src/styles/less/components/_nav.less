@@ -3,18 +3,23 @@
 
 .nav {
 
-  .media-768({
-    display: none;
-  });
 
   &__list {
     display: flex;
     column-gap: 36px;
+
+    .media-768({
+      font-size: 32px;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 40px;
+    });
   }
 
   &__list-item {
     color: @color-dark-s;
     position: relative;
+    white-space: nowrap;
     
     &_active {
       color: @color-light-s;
@@ -38,5 +43,9 @@
       border-bottom: 3px solid @color-primary;
       cursor: default;
     }
+
+    .media-768({
+      font-size: 32px;
+    });
   }
 }

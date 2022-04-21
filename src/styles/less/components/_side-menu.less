@@ -1,0 +1,51 @@
+@import url('../abstract/_variables.less');
+@import url('../abstract/_mixins.less');
+
+.side-menu {
+  background:rgba(41, 41, 41, 0.6);
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  display: flex;
+  justify-content: end;
+
+  &__screen {
+    width: 320px;
+    background: @color-dark-3xl;
+    position: relative;
+    transition: all .1s ease-in-out;
+    right: 0;
+    display: block;
+
+    &_slide-in {
+      right: 0;
+    }
+    
+    &_slide-out {
+      right: -320px;
+    }
+
+    &_light {
+      background: @color-light-xl;
+    }
+  }
+
+
+  &__header {
+    padding: 30px 0;
+  }
+
+  &__links-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+}
