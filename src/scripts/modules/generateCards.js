@@ -142,8 +142,15 @@ function createPopupItem(cardData) {
   return popup;
 }
 
-function generateCards() {
-  readTextFile("../files/pets.json", buildCards);
+function generateCards(callback) {
+  let promise = new Promise((resolve, reject) => {
+    readTextFile("../files/pets.json", resolve);
+  });
+  promise.then((result) => {
+    buildCards(result)
+    callback();
+  });
+
 }
 
 export default generateCards;

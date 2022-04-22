@@ -6,9 +6,11 @@ import petPopup from './modules/petPopup.js';
 
 document.addEventListener("DOMContentLoaded", function() { 
   sideMenu();
-  const promise = new Promise((resolve, reject) => {
-    // асинхронный код
+
+  let promise = new Promise((resolve, reject) => {
     generateCards(resolve);
   });
-  promise.then(petPopup);
+  promise.then(() => {
+    petPopup();
+  });
 });
