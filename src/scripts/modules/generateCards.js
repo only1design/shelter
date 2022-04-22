@@ -22,22 +22,9 @@ function isPetsPageContainer() {
   return false;
 }
 
-function readTextFile(file) {
-  return new Promise((resolve, reject) => {
-    let rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-      if (rawFile.readyState === 4 && rawFile.status == "200") {
-        resolve(rawFile.responseText);
-      }
-    }
-    rawFile.send(null);
-  })
-}
-
 function buildCards(cardsJson) {
   let cardsObj = JSON.parse(cardsJson);
+  console.log(cardsObj[0]);
   let itemWrapperClass;
   if (isMainPageContainer()) {
     itemWrapperClass = 'our-friends__slider-item';
@@ -94,15 +81,13 @@ function createPopupItem(cardData) {
   popupListItemValue = document.createElement('span');
 
   function createListItem(key, value) {
-    const listItem = popupListItem,
-    listItemKey = popupListItemKey,
-    listItemValue = popupListItemValue;
+    const listItem = popupListItem.cloneNode(),
+    listItemKey = popupListItemKey.cloneNode(),
+    listItemValue = popupListItemValue.cloneNode();
 
     listItemKey.append(key + ': ');
     if (Array.isArray(value)) {
-      value.forEach(item => {
-        listItemValue.append(item + ', ');
-      })
+      listItemValue.append(value.join(', '));
     } else {
       listItemValue.append(value);
     }
@@ -112,7 +97,7 @@ function createPopupItem(cardData) {
     return listItem;
   }
 
-  popup.classList.add('pet-popup', 'hidden');
+  popup.classList.add('pet-popup', 'hidden', 'fade-out');
   popupScreen.classList.add('pet-popup__screen');
   popupCloseBtn.classList.add('pet-popup__close-btn');
   popupCloseIcon.classList.add('icon', 'icon-close');
@@ -121,11 +106,12 @@ function createPopupItem(cardData) {
   popupImg.alt = cardData.name;
   popupDesc.classList.add('pet-popup__desc');
   popupName.classList.add('pet-popup__name', 'header-3');
+
   popupName.append(cardData.name);
   popupType.classList.add('pet-popup__type', 'header-4');
-  popupName.append(cardData.type + ' - ' + cardData.breed);
+  popupType.append(cardData.type + ' - ' + cardData.breed);
   popupInfo.classList.add('pet-popup__information', 'header-5');
-  popupInfo.append(cardData.dascription);
+  popupInfo.append(cardData.description);
   popupList.classList.add('pet-popup__list');
   popupListItem.classList.add('pet-popup__list-item', 'header-5');
   popupListItemKey.classList.add('pet-popup__record-key', 'header-5_modal-window');
@@ -133,15 +119,29 @@ function createPopupItem(cardData) {
   
   popupCloseBtn.append(popupCloseIcon);
   popupImgWrapper.append(popupImg);
-  popupList.append(createListItem('Age: ', cardData.age));
-  popupList.append(createListItem('Inoculations: ', cardData.inoculations));
-  popupList.append(createListItem('Diseases: ', cardData.diseases));
-  popupList.append(createListItem('Parasites: ', cardData.parasites));
+  popupList.append(createListItem('Age', cardData.age));
+  popupList.append(createListItem('Inoculations', cardData.inoculations));
+  popupList.append(createListItem('Diseases', cardData.diseases));
+  popupList.append(createListItem('Parasites', cardData.parasites));
   popupDesc.append(popupName, popupType, popupInfo, popupList);
   popupScreen.append(popupCloseBtn, popupImgWrapper, popupDesc);
   popup.append(popupScreen);
 
   return popup;
+}
+
+function readTextFile(file) {
+  return new Promise((resolve, reject) => {
+    let rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+      if (rawFile.readyState === 4 && rawFile.status == "200") {
+        resolve(rawFile.responseText);
+      }
+    }
+    rawFile.send(null);
+  })
 }
 
 async function generateCards() {

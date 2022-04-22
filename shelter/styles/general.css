@@ -1711,9 +1711,12 @@ a {
 
 .pet-card__img {
   margin-bottom: 29px;
+  width: 270px;
+  height: 270px;
 }
 
 .pet-card__img img {
+  width: 100%;
   border-radius: 9px 9px 0 0;
 }
 
@@ -1765,6 +1768,11 @@ a {
 }
 
 .pet-popup__close-btn:hover {
+  background-color: #fddcc4;
+  border-color: #fddcc4;
+}
+
+.pet-popup__close-btn_active {
   background-color: #fddcc4;
   border-color: #fddcc4;
 }

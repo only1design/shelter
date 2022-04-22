@@ -6,6 +6,6 @@ import petPopup from './modules/petPopup.js';
 
 document.addEventListener("DOMContentLoaded", async function() { 
   sideMenu();
-  await generateCards()
+  await generateCards();
   petPopup();
 });
