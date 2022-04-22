@@ -145,11 +145,8 @@ function createPopupItem(cardData) {
 }
 
 async function generateCards() {
-  return new Promise((resolve, reject) => {
-    readTextFile("../files/pets.json")
-    .then(jsonData => buildCards(jsonData))
-    .then(resolve);
-  })
+  buildCards(await readTextFile("../files/pets.json"));
+  Promise.resolve();
 }
 
 export default generateCards;
