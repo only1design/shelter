@@ -22,16 +22,18 @@ function isPetsPageContainer() {
   return false;
 }
 
-function readTextFile(file, callback) {
-  let rawFile = new XMLHttpRequest();
-  rawFile.overrideMimeType("application/json");
-  rawFile.open("GET", file, true);
-  rawFile.onreadystatechange = function() {
+function readTextFile(file) {
+  return new Promise((resolve, reject) => {
+    let rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
       if (rawFile.readyState === 4 && rawFile.status == "200") {
-          callback(rawFile.responseText);
+        resolve(rawFile.responseText);
       }
-  }
-  rawFile.send(null);
+    }
+    rawFile.send(null);
+  })
 }
 
 function buildCards(cardsJson) {
@@ -142,15 +144,12 @@ function createPopupItem(cardData) {
   return popup;
 }
 
-function generateCards(callback) {
-  let promise = new Promise((resolve, reject) => {
-    readTextFile("../files/pets.json", resolve);
-  });
-  promise.then((result) => {
-    buildCards(result)
-    callback();
-  });
-
+async function generateCards() {
+  return new Promise((resolve, reject) => {
+    readTextFile("../files/pets.json")
+    .then(jsonData => buildCards(jsonData))
+    .then(resolve);
+  })
 }
 
 export default generateCards;
