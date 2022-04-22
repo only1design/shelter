@@ -101,13 +101,16 @@
   }
 
   &__slider-item {
+    &:nth-child(n+4) {
+      display: none;
+    }
     .media-1280({
-      &:nth-child(3) {
+      &:nth-child(n+3) {
         display: none;
       }
     });
     .media-768({
-      &:nth-child(2) {
+      &:nth-child(n+2) {
         display: none;
       }
     });

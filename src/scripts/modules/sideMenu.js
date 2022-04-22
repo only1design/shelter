@@ -1,8 +1,9 @@
+import * as global from './globalFunctions.js';
+
 const burger = document.querySelector('.header__burger'),
   menuLayout = document.querySelector('.side-menu'),
   menuScreen = document.querySelector('.side-menu__screen'),
   headerLogo = document.querySelector('.header__wrapper .logo'),
-  html = document.querySelector('html'),
   header = document.querySelector('.header'),
   links = document.querySelectorAll('.side-menu .nav__list-item'),
   hiddenClass = 'hidden',
@@ -22,14 +23,6 @@ function scrollToTop() {
     top: 0,
     behavior: "smooth"
   });
-};
-
-function scrollLock() {
-  html.style.overflow = 'hidden';
-};
-
-function scrollUnlock() {
-  html.style.overflow = '';
 };
 
 function showMenuLayout() {
@@ -97,7 +90,7 @@ function openMenu() {
   slideInMenu();
   activateBurger();
   hideHeaderLogo();
-  scrollLock();
+  global.scrollLock();
   if (!header.classList.contains(headerStickyClass)) {
     scrollToTop();
   };
@@ -108,7 +101,7 @@ function closeMenu() {
   disactivateBurger();
   slideOutMenu();
   showHeaderLogo();
-  scrollUnlock();
+  global.scrollUnlock();
 };
 
 function toggleMenu() {
