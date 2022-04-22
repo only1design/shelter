@@ -16,7 +16,7 @@
   \*****************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_sideMenu_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sideMenu.js */ \"./src/scripts/modules/sideMenu.js\");\n/* harmony import */ var _modules_generateCards_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/generateCards.js */ \"./src/scripts/modules/generateCards.js\");\n\r\n\r\n\r\n\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", function() { \r\n  (0,_modules_sideMenu_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n  (0,_modules_generateCards_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n});\n\n//# sourceURL=webpack://rs-school-repo/./src/scripts/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_sideMenu_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/sideMenu.js */ \"./src/scripts/modules/sideMenu.js\");\n/* harmony import */ var _modules_generateCards_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/generateCards.js */ \"./src/scripts/modules/generateCards.js\");\n/* harmony import */ var _modules_petPopup_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/petPopup.js */ \"./src/scripts/modules/petPopup.js\");\n\r\n\r\n\r\n\r\n\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", function() { \r\n  (0,_modules_sideMenu_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n  const promise = new Promise((resolve, reject) => {\r\n    // асинхронный код\r\n    (0,_modules_generateCards_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(resolve);\r\n  });\r\n  promise.then(_modules_petPopup_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"]);\r\n});\n\n//# sourceURL=webpack://rs-school-repo/./src/scripts/main.js?");
 
 /***/ }),
 
@@ -37,6 +37,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"scrollLock\": () => (/* binding */ scrollLock),\n/* harmony export */   \"scrollUnlock\": () => (/* binding */ scrollUnlock)\n/* harmony export */ });\nconst html = document.querySelector('html');\r\n\r\nfunction scrollLock() {\r\n  html.style.overflow = 'hidden';\r\n};\r\n\r\nfunction scrollUnlock() {\r\n  html.style.overflow = '';\r\n};\n\n//# sourceURL=webpack://rs-school-repo/./src/scripts/modules/globalFunctions.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/modules/petPopup.js":
+/*!*****************************************!*\
+  !*** ./src/scripts/modules/petPopup.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _globalFunctions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./globalFunctions.js */ \"./src/scripts/modules/globalFunctions.js\");\n\r\n\r\nconst popupLayouts = document.querySelectorAll('.pet-popup'),\r\npopupScreens = document.querySelectorAll('.pet-popup__screen'),\r\ncloseBtns = document.querySelectorAll('.pet-popup__close-btn'),\r\ncards = document.querySelectorAll('.pet-card'),\r\nhtml = document.querySelector('html'),\r\nhiddenClass = 'hidden',\r\nfadeInClass = 'fade-in',\r\nfadeOutClass = 'fade-out';\r\n\r\nfunction openPopup(popup) {\r\n  popup.classList.remove(hiddenClass);\r\n}\r\n\r\nfunction closePopup(popup) {\r\n  popup.classList.add(hiddenClass);\r\n}\r\n\r\nfunction bindPopup(card, index) {\r\n  card.addEventListener('click', openPopup(popupLayouts[index]));\r\n}\r\n\r\nfunction petPopup() {\r\n  debugger\r\n  cards.forEach((cardItem, index) => {\r\n    bindPopup(cardItem, index);\r\n  });\r\n}\r\n\r\n// card = document.querySelectorAll('.pet-card'),\r\n// card.addEventListener('click', openPopup(popupLayouts[index]));\r\n\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (petPopup);\n\n//# sourceURL=webpack://rs-school-repo/./src/scripts/modules/petPopup.js?");
 
 /***/ }),
 
