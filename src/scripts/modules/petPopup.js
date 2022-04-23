@@ -48,14 +48,12 @@ function bindPopup(card, index) {
 
     layout.addEventListener('mouseover', (e) => {
       if (e.target == layout) {
-        console.log('mouseover');
         closeBtns[index].classList.add(closeBtnActiveClass);
       }
     });
 
     layout.addEventListener('mouseout', (e) => {
       if (e.target == layout) {
-        console.log('mouseover');
         closeBtns[index].classList.remove(closeBtnActiveClass);
       }
     });

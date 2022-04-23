@@ -24,7 +24,6 @@ function isPetsPageContainer() {
 
 function buildCards(cardsJson) {
   let cardsObj = JSON.parse(cardsJson);
-  console.log(cardsObj[0]);
   let itemWrapperClass;
   if (isMainPageContainer()) {
     itemWrapperClass = 'our-friends__slider-item';
