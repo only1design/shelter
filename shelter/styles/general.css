@@ -989,6 +989,8 @@ html {
 body {
   font-family: "Georgia", serif;
   font-weight: 400;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 a {
@@ -1157,7 +1159,7 @@ a {
 }
 
 .header__burger_active {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 
 .header__burger-icon {
@@ -1342,23 +1344,21 @@ a {
   height: 435px;
   top: 0;
   justify-content: space-between;
-  transition: all 0.7s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  position: absolute;
 }
 
 .our-friends__slide_curr {
-  position: absolute;
   left: 0 !important;
   display: flex;
 }
 
 .our-friends__slide_prev {
-  position: absolute;
   left: -100%;
   display: flex;
 }
 
 .our-friends__slide_next {
-  position: absolute;
   left: 100%;
   display: flex;
 }
@@ -1660,10 +1660,57 @@ a {
 }
 
 .pets__items-container {
-  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 900px;
+}
+
+.pets__page {
+  display: none;
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 30px;
+  top: 0;
+  left: 0;
+  transition: all 0.4s ease-in-out;
+  position: absolute;
+  width: 100%;
+}
+
+.pets__page_curr {
+  left: 0 !important;
+  display: flex;
+}
+
+.pets__page_prev {
+  display: flex;
+  left: -100% !important;
+}
+
+.pets__page_next {
+  display: flex;
+  left: 100% !important;
+}
+
+.pets__page_first {
+  display: flex;
+  left: -100%;
+}
+
+.pets__page_last {
+  display: flex;
+  left: 100%;
+}
+
+.pets__page_swiped-first {
+  display: flex;
+  left: 100%;
+}
+
+.pets__page_swiped-last {
+  display: flex;
+  left: -100%;
 }
 
 .pets__item:nth-child(n+9) {
@@ -1932,7 +1979,7 @@ a {
 
   .our-friends__slide {
     column-gap: 40px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .our-friends__slider-item:nth-child(n+3) {
@@ -1995,6 +2042,11 @@ a {
 
   .pets__items-container {
     padding: 0 44px;
+    height: 1365px;
+  }
+
+  .pets__page {
+    transition: all 0.3s ease-in-out;
   }
 
   .pets__item {
@@ -2143,7 +2195,7 @@ a {
   }
 
   .our-friends__slide {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
 
   .our-friends__slider-item:nth-child(n+2) {
@@ -2277,6 +2329,10 @@ a {
 
   .pets__items-container {
     padding: 0;
+  }
+
+  .pets__page {
+    transition: all 0.2s ease-in-out;
   }
 
   .pets__item {
