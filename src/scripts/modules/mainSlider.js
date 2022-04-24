@@ -5,106 +5,164 @@ const btnLeft = document.querySelectorAll('.our-friends__slider-arrow')[0],
   slideClass = 'our-friends__slide',
   slideCurrentClass = 'our-friends__slide_curr',
   slidePreviousClass = 'our-friends__slide_prev',
-  slideNextClass = 'our-friends__slide_next',
-  swipeLeftClass = 'our-friends__slide_swipe-left',
-  swipeRightClass = 'our-friends__slide_swipe-right';
+  slideNextClass = 'our-friends__slide_next';
 
 function getSlides() {
   return document.querySelectorAll('.' + slideClass);
 }
 
-function clearSlideModificators(slideIndex, swipe) {
+function clearSlidesModificators(slideIndex, swipe) {
   let slides = getSlides();
 
   switch (swipe) {
     case 'right':
-      slides[slideIndex].classList.remove(slideNextClass)
-      slides[slideIndex - 1].classList.remove(slideCurrentClass)
       slides[slideIndex - 2].classList.remove(slidePreviousClass)
+      slides[slideIndex - 1].classList.remove(slideCurrentClass)
+      slides[slideIndex].classList.remove(slideNextClass)
       break;
   
     case 'left':
-      slides[slideIndex + 2].classList.remove(slideNextClass)
-      slides[slideIndex + 1].classList.remove(slideCurrentClass)
       slides[slideIndex].classList.remove(slidePreviousClass)
+      slides[slideIndex + 1].classList.remove(slideCurrentClass)
+      slides[slideIndex + 2].classList.remove(slideNextClass)
       break;
   }
 }
 
 function swipeRight(currentSlideIndex) {
-  let slides = getSlides();
+  const slides = getSlides(),
+    container = cards.getItemsContainer();
   
-  clearSlideModificators(currentSlideIndex, 'right');
+  container.appendChild(slides[0]);
+  clearSlidesModificators(currentSlideIndex, 'right');
   
-  slides[currentSlideIndex - 1].classList.add(slidePreviousClass);
-  slides[currentSlideIndex].classList.add(slideCurrentClass);
-  slides[currentSlideIndex + 1].classList.add(slideNextClass);
- 
+  slides[currentSlideIndex].classList.add(slidePreviousClass);
+  slides[currentSlideIndex + 1].classList.add(slideCurrentClass);
+  slides[currentSlideIndex + 2].classList.add(slideNextClass);
 }
 
 function swipeLeft(currentSlideIndex) {
-  let slides = getSlides(),
-  container = cards.getItemsContainer()
+  const slides = getSlides(),
+    container = cards.getItemsContainer()
 
-  clearSlideModificators(currentSlideIndex, 'left');
+  container.insertBefore(slides[slides.length - 1], container.firstChild)
+  clearSlidesModificators(currentSlideIndex, 'left');
+
+  slides[currentSlideIndex - 2].classList.add(slidePreviousClass);
+  slides[currentSlideIndex - 1].classList.add(slideCurrentClass);
+  slides[currentSlideIndex].classList.add(slideNextClass);
+}
+
+const btnLeftAction = () => {
+  const  currentSlideIndex = getCurrentSlideIndex();
+
+  swipeLeft(currentSlideIndex);
+
+  btnLeft.removeEventListener('click', btnLeftAction);
+  document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', () => {
+    btnLeft.addEventListener('click', btnLeftAction);
+  });
+}
+
+const btnRightAction = () => {
+  const currentSlideIndex = getCurrentSlideIndex();
+
+  swipeRight(currentSlideIndex);
+
+  btnRight.removeEventListener('click', btnRightAction);
+  document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', () => {
+    btnRight.addEventListener('click', btnRightAction);
+  });
+}
+
+function bindBtns() {
+  btnLeft.addEventListener('click', btnLeftAction);
+  btnRight.addEventListener('click', btnRightAction);
+}
+
+function getItemsQuantity() {
+  const width = window.innerWidth;
+
+  if (width < 768) {
+    return 1;
+  } else if (width < 1280) {
+    return 2;
+  } else if (width >= 1280) {
+    return 3;
+  }
+}
+
+function initCurrentSlide() {
+  const currentSlideIndex = Math.floor(getSlides().length / 2),
+    slides = getSlides();
 
   slides[currentSlideIndex - 1].classList.add(slidePreviousClass);
   slides[currentSlideIndex].classList.add(slideCurrentClass);
   slides[currentSlideIndex + 1].classList.add(slideNextClass);
 }
 
-function bindBtns() {
-  let currentSlideIndex = makeCurrentSlideIndex();
+function buildSlides(cardsData) {
+  const itemsQuantity = getItemsQuantity(),
+    slide = document.createElement('div');
 
-  function bind(btn, func) {
-    btn.addEventListener('click', (e) => {
-      func();
-    })
-  }
-
-  bind(btnLeft, () => {
-    swipeLeft(currentSlideIndex(-1));
-  });
-
-  bind(btnRight, () => {
-    swipeRight(currentSlideIndex(1));
-  });
-}
-
-function buildSlides(cardsData, slideItemsQuantity) {
-  let slide = document.createElement('div');
   slide.classList.add(slideClass);
 
-  for (let i = 0; i < (cardsData.length - (cardsData.length % slideItemsQuantity)); i = i + slideItemsQuantity) {
+  for (let i = 0; i < (cardsData.length - (cardsData.length % itemsQuantity)); i = i + itemsQuantity) {
     let currentSlide = slide.cloneNode();
-    cards.buildCard(cardsData[i], currentSlide);
-    cards.buildCard(cardsData[i + 1], currentSlide);
-    cards.buildCard(cardsData[i + 2], currentSlide);
+
+    for (let j = 0; j < itemsQuantity; j++) {
+      cards.buildCard(cardsData[i + j], currentSlide);
+    }
 
     cards.getItemsContainer().append(currentSlide);
   }
+
+  initCurrentSlide();
+  bindBtns();
 }
 
-function makeCurrentSlideIndex() {
-  let index = Math.floor(getSlides().length / 2)
+function autoRebuildSlides(cardsData) {
+  let itemsQuantity = getItemsQuantity();
 
-  let slides = getSlides();
+  window.addEventListener('resize', () => {
+    if (itemsQuantity != getItemsQuantity()) {
+      const container = cards.getItemsContainer();
+      itemsQuantity = getItemsQuantity();
 
-  slides[index - 1].classList.add(slidePreviousClass);
-  slides[index].classList.add(slideCurrentClass);
-  slides[index + 1].classList.add(slideNextClass);
+      btnLeft.removeEventListener('click', btnLeftAction);
+      btnRight.removeEventListener('click', btnRightAction);
+      container.innerHTML = '';
+      buildSlides(cardsData);
+    }
+  })
+}
 
-  return (num = 0) => {
-    return index += num;
+function getCurrentSlideIndex() {
+  return Math.floor(getSlides().length / 2);
+}
+
+function shuffle(array) {
+  let remainItems = array.length;
+
+  while (remainItems) {
+
+    let selectedItem = Math.floor(Math.random() * remainItems--);
+
+    let currentItem = array[remainItems];
+    array[remainItems] = array[selectedItem];
+    array[selectedItem] = currentItem;
   }
+
+  return array;
 }
 
 async function mainSlider() {
   let cardsData = await cards.getCardsData("./files/pets.json");
+  cardsData = shuffle(cardsData);
 
-  buildSlides(cardsData, 3);
+  buildSlides(cardsData);
+  autoRebuildSlides(cardsData);
 
-  bindBtns();
   Promise.resolve();
 }
 
