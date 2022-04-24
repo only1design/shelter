@@ -1343,22 +1343,20 @@ a {
   top: 0;
   justify-content: space-between;
   transition: all 0.7s ease-in-out;
+  position: absolute;
 }
 
 .our-friends__slide_curr {
-  position: absolute;
   left: 0 !important;
   display: flex;
 }
 
 .our-friends__slide_prev {
-  position: absolute;
   left: -100%;
   display: flex;
 }
 
 .our-friends__slide_next {
-  position: absolute;
   left: 100%;
   display: flex;
 }
@@ -1660,10 +1658,57 @@ a {
 }
 
 .pets__items-container {
-  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 900px;
+}
+
+.pets__page {
+  display: none;
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 30px;
+  top: 0;
+  left: 0;
+  transition: all 0.7s ease-in-out;
+  position: absolute;
+  width: 100%;
+}
+
+.pets__page_curr {
+  left: 0 !important;
+  display: flex;
+}
+
+.pets__page_prev {
+  display: flex;
+  left: -100% !important;
+}
+
+.pets__page_next {
+  display: flex;
+  left: 100% !important;
+}
+
+.pets__page_first {
+  display: flex;
+  left: -100%;
+}
+
+.pets__page_last {
+  display: flex;
+  left: 100%;
+}
+
+.pets__page_swiped-first {
+  display: flex;
+  left: 100%;
+}
+
+.pets__page_swiped-last {
+  display: flex;
+  left: -100%;
 }
 
 .pets__item:nth-child(n+9) {
@@ -1995,6 +2040,7 @@ a {
 
   .pets__items-container {
     padding: 0 44px;
+    height: 1365px;
   }
 
   .pets__item {

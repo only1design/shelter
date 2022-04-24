@@ -2,6 +2,7 @@ import * as cards from './cards.js';
 
 const btnLeft = document.querySelectorAll('.our-friends__slider-arrow')[0],
   btnRight = document.querySelectorAll('.our-friends__slider-arrow')[1],
+  slider = document.querySelector('.our-friends__slider'),
   slideClass = 'our-friends__slide',
   slideCurrentClass = 'our-friends__slide_curr',
   slidePreviousClass = 'our-friends__slide_prev',
@@ -11,27 +12,28 @@ function getSlides() {
   return document.querySelectorAll('.' + slideClass);
 }
 
-function clearSlidesModificators(slideIndex, swipe) {
+function clearSlidesModificators(slideIndex, action) {
   let slides = getSlides();
 
-  switch (swipe) {
+  switch (action) {
     case 'right':
-      slides[slideIndex - 2].classList.remove(slidePreviousClass)
-      slides[slideIndex - 1].classList.remove(slideCurrentClass)
-      slides[slideIndex].classList.remove(slideNextClass)
+      slides[slideIndex - 2].classList.remove(slidePreviousClass);
+      slides[slideIndex - 1].classList.remove(slideCurrentClass);
+      slides[slideIndex].classList.remove(slideNextClass);
       break;
   
     case 'left':
-      slides[slideIndex].classList.remove(slidePreviousClass)
-      slides[slideIndex + 1].classList.remove(slideCurrentClass)
-      slides[slideIndex + 2].classList.remove(slideNextClass)
+      slides[slideIndex].classList.remove(slidePreviousClass);
+      slides[slideIndex + 1].classList.remove(slideCurrentClass);
+      slides[slideIndex + 2].classList.remove(slideNextClass);
       break;
   }
 }
 
-function swipeRight(currentSlideIndex) {
+function swipeRight() {
   const slides = getSlides(),
-    container = cards.getItemsContainer();
+    container = cards.getItemsContainer(),
+    currentSlideIndex = getCurrentSlideIndex();
   
   container.appendChild(slides[0]);
   clearSlidesModificators(currentSlideIndex, 'right');
@@ -41,9 +43,10 @@ function swipeRight(currentSlideIndex) {
   slides[currentSlideIndex + 2].classList.add(slideNextClass);
 }
 
-function swipeLeft(currentSlideIndex) {
+function swipeLeft() {
   const slides = getSlides(),
-    container = cards.getItemsContainer()
+    container = cards.getItemsContainer(),
+    currentSlideIndex = getCurrentSlideIndex();
 
   container.insertBefore(slides[slides.length - 1], container.firstChild)
   clearSlidesModificators(currentSlideIndex, 'left');
@@ -54,9 +57,7 @@ function swipeLeft(currentSlideIndex) {
 }
 
 const btnLeftAction = () => {
-  const  currentSlideIndex = getCurrentSlideIndex();
-
-  swipeLeft(currentSlideIndex);
+  swipeLeft();
 
   btnLeft.removeEventListener('click', btnLeftAction);
   document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', () => {
@@ -65,9 +66,7 @@ const btnLeftAction = () => {
 }
 
 const btnRightAction = () => {
-  const currentSlideIndex = getCurrentSlideIndex();
-
-  swipeRight(currentSlideIndex);
+  swipeRight();
 
   btnRight.removeEventListener('click', btnRightAction);
   document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', () => {
@@ -157,11 +156,13 @@ function shuffle(array) {
 }
 
 async function mainSlider() {
-  let cardsData = await cards.getCardsData("./files/pets.json");
-  cardsData = shuffle(cardsData);
-
-  buildSlides(cardsData);
-  autoRebuildSlides(cardsData);
+  if (slider) {
+    let cardsData = await cards.getCardsData("./files/pets.json");
+    cardsData = shuffle(cardsData);
+  
+    buildSlides(cardsData);
+    autoRebuildSlides(cardsData);
+  }
 
   Promise.resolve();
 }
