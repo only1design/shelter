@@ -1,7 +1,9 @@
 import * as cards from './cards.js';
+import * as global from './globalFunctions.js';
 
 const btnLeft = document.querySelectorAll('.our-friends__slider-arrow')[0],
   btnRight = document.querySelectorAll('.our-friends__slider-arrow')[1],
+  btnInactiveClass = 'our-friends__slider-arrow_inactive',
   slider = document.querySelector('.our-friends__slider'),
   slideClass = 'our-friends__slide',
   slideCurrentClass = 'our-friends__slide_curr',
@@ -58,25 +60,40 @@ function swipeLeft() {
 
 const btnLeftAction = () => {
   swipeLeft();
+  removeBtnActions();
 
-  btnLeft.removeEventListener('click', btnLeftAction);
   document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', () => {
-    btnLeft.addEventListener('click', btnLeftAction);
+    updateBtnActions();
   });
 }
 
 const btnRightAction = () => {
   swipeRight();
+  removeBtnActions();
 
-  btnRight.removeEventListener('click', btnRightAction);
   document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', () => {
-    btnRight.addEventListener('click', btnRightAction);
+    updateBtnActions();
   });
 }
 
-function bindBtns() {
-  btnLeft.addEventListener('click', btnLeftAction);
-  btnRight.addEventListener('click', btnRightAction);
+function removeBtnActions() {
+  disactivateBtn(btnLeft, btnLeftAction);
+  disactivateBtn(btnRight, btnRightAction);
+}
+
+function updateBtnActions() {
+  activateBtn(btnLeft, btnLeftAction);
+  activateBtn(btnRight, btnRightAction);
+}
+
+function disactivateBtn(btn, action) {
+  btn.classList.add(btnInactiveClass);
+  btn.removeEventListener('click', action);
+}
+
+function activateBtn(btn, action) {
+  btn.classList.remove(btnInactiveClass);
+  btn.addEventListener('click', action);
 }
 
 function getItemsQuantity() {
@@ -91,23 +108,37 @@ function getItemsQuantity() {
   }
 }
 
+function ifSlideExist(slideIndex, func = () => { return true }) {
+  const slides = getSlides();
+  if (typeof slides[slideIndex] === 'undefined') {
+    return false;
+  }
+  return func();
+}
+
 function initCurrentSlide() {
   const currentSlideIndex = Math.floor(getSlides().length / 2),
     slides = getSlides();
 
-  slides[currentSlideIndex - 1].classList.add(slidePreviousClass);
-  slides[currentSlideIndex].classList.add(slideCurrentClass);
-  slides[currentSlideIndex + 1].classList.add(slideNextClass);
+  ifSlideExist(currentSlideIndex - 1, () => {
+    slides[currentSlideIndex - 1].classList.add(slidePreviousClass);
+  });
+
+  ifSlideExist(currentSlideIndex, () => {
+    slides[currentSlideIndex].classList.add(slideCurrentClass);
+  });
+
+  ifSlideExist(currentSlideIndex + 1, () => {
+    slides[currentSlideIndex + 1].classList.add(slideNextClass);
+  });
 }
 
 function buildSlides(cardsData) {
-  const itemsQuantity = getItemsQuantity(),
-    slide = document.createElement('div');
-
-  slide.classList.add(slideClass);
+  const itemsQuantity = getItemsQuantity();
 
   for (let i = 0; i < (cardsData.length - (cardsData.length % itemsQuantity)); i = i + itemsQuantity) {
-    let currentSlide = slide.cloneNode();
+    const currentSlide = document.createElement('div');
+    currentSlide.classList.add(slideClass);
 
     for (let j = 0; j < itemsQuantity; j++) {
       cards.buildCard(cardsData[i + j], currentSlide);
@@ -117,7 +148,7 @@ function buildSlides(cardsData) {
   }
 
   initCurrentSlide();
-  bindBtns();
+  updateBtnActions();
 }
 
 function autoRebuildSlides(cardsData) {
@@ -128,8 +159,8 @@ function autoRebuildSlides(cardsData) {
       const container = cards.getItemsContainer();
       itemsQuantity = getItemsQuantity();
 
-      btnLeft.removeEventListener('click', btnLeftAction);
-      btnRight.removeEventListener('click', btnRightAction);
+      removeBtnActions();
+
       container.innerHTML = '';
       buildSlides(cardsData);
     }
@@ -140,28 +171,17 @@ function getCurrentSlideIndex() {
   return Math.floor(getSlides().length / 2);
 }
 
-function shuffle(array) {
-  let remainItems = array.length;
-
-  while (remainItems) {
-
-    let selectedItem = Math.floor(Math.random() * remainItems--);
-
-    let currentItem = array[remainItems];
-    array[remainItems] = array[selectedItem];
-    array[selectedItem] = currentItem;
-  }
-
-  return array;
-}
-
 async function mainSlider() {
   if (slider) {
-    let cardsData = await cards.getCardsData("./files/pets.json");
-    cardsData = shuffle(cardsData);
+    let cardsData = await cards.getCardsData("./files/pets.json"),
+    mixedCardsData = [];
+
+    for (let i = 0; i < 6; i++) {
+      mixedCardsData = mixedCardsData.concat(global.shuffle(cardsData));
+    }    
   
-    buildSlides(cardsData);
-    autoRebuildSlides(cardsData);
+    buildSlides(mixedCardsData);
+    autoRebuildSlides(mixedCardsData);
   }
 
   Promise.resolve();

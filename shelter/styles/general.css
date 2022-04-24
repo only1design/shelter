@@ -1342,7 +1342,7 @@ a {
   height: 435px;
   top: 0;
   justify-content: space-between;
-  transition: all 0.7s ease-in-out;
+  transition: all 0.4s ease-in-out;
   position: absolute;
 }
 
@@ -1671,7 +1671,7 @@ a {
   row-gap: 30px;
   top: 0;
   left: 0;
-  transition: all 0.7s ease-in-out;
+  transition: all 0.4s ease-in-out;
   position: absolute;
   width: 100%;
 }
@@ -1977,7 +1977,7 @@ a {
 
   .our-friends__slide {
     column-gap: 40px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   .our-friends__slider-item:nth-child(n+3) {
@@ -2041,6 +2041,10 @@ a {
   .pets__items-container {
     padding: 0 44px;
     height: 1365px;
+  }
+
+  .pets__page {
+    transition: all 0.3s ease-in-out;
   }
 
   .pets__item {
@@ -2189,7 +2193,7 @@ a {
   }
 
   .our-friends__slide {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
 
   .our-friends__slider-item:nth-child(n+2) {
@@ -2323,6 +2327,10 @@ a {
 
   .pets__items-container {
     padding: 0;
+  }
+
+  .pets__page {
+    transition: all 0.2s ease-in-out;
   }
 
   .pets__item {

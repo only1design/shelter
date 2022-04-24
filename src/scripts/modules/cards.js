@@ -1,5 +1,3 @@
-import * as global from './globalFunctions.js';
-
 export function getItemsContainer() {
   let itemsContainer = false;
   

@@ -54,9 +54,17 @@
     row-gap: 30px;
     top: 0;
     left: 0;
-    transition: all .7s ease-in-out;
+    transition: all .4s ease-in-out;
     position: absolute;
     width: 100%;
+
+    .media-1280({
+      transition: all .3s ease-in-out;
+    });
+
+    .media-768({
+      transition: all .2s ease-in-out;
+    });
 
     &_curr {
       left: 0 !important;
