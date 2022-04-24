@@ -1,29 +1,41 @@
 import * as global from './globalFunctions.js';
 
-let ItemsContainer = false;
-
-if (isMainPageContainer()) {
-  ItemsContainer = document.querySelector('.our-friends__slider-items-container')
-} else if (isPetsPageContainer()) {
-  ItemsContainer = document.querySelector('.pets__items-container');
+export function getItemsContainer() {
+  let itemsContainer = false;
+  
+  if (isMainPageContainer()) {
+    itemsContainer = document.querySelector('.our-friends__slider-items-container')
+  } else if (isPetsPageContainer()) {
+    itemsContainer = document.querySelector('.pets__items-container');
+  }
+  return itemsContainer;
 }
 
-function isMainPageContainer() {
+export function isMainPageContainer() {
   if (document.querySelector('.our-friends__slider-items-container')) {
     return true;
   }
   return false;
 }
 
-function isPetsPageContainer() {
+export function isPetsPageContainer() {
   if (document.querySelector('.pets__items-container')) {
     return true;
   }
   return false;
 }
 
-function buildCards(cardsJson) {
-  let cardsObj = JSON.parse(cardsJson);
+export async function getCardsData(file) {
+  return JSON.parse(await readTextFile(file));
+}
+
+export function buildCards(cardsObj, container) {
+  cardsObj.forEach(cardData => {
+    buildCard(cardData, container);
+  });
+}
+
+export function buildCard(cardsObj, container) {
   let itemWrapperClass;
   if (isMainPageContainer()) {
     itemWrapperClass = 'our-friends__slider-item';
@@ -31,17 +43,15 @@ function buildCards(cardsJson) {
     itemWrapperClass = 'pets__item';
   }
 
-  cardsObj.forEach(cardData => {
-    let cardWrapper = document.createElement('div');
-    cardWrapper.classList.add(itemWrapperClass);
-    cardWrapper.append(createCardItem(cardData));
-    cardWrapper.append(createPopupItem(cardData));
+  let cardWrapper = document.createElement('div');
+  cardWrapper.classList.add(itemWrapperClass);
+  cardWrapper.append(createCardItem(cardsObj));
+  cardWrapper.append(createPopupItem(cardsObj));
 
-    ItemsContainer.append(cardWrapper);
-  });
+  container.append(cardWrapper);
 }
 
-function createCardItem(cardData) {
+export function createCardItem(cardData) {
   const card = document.createElement('div'),
   cardImgWrapper = document.createElement('div'),
   cardImg = document.createElement('img'),
@@ -63,7 +73,7 @@ function createCardItem(cardData) {
   return card;
 }
 
-function createPopupItem(cardData) {
+export function createPopupItem(cardData) {
   const popup = document.createElement('div'),
   popupScreen = document.createElement('div'),
   popupCloseBtn = document.createElement('div'),
@@ -129,7 +139,7 @@ function createPopupItem(cardData) {
   return popup;
 }
 
-function readTextFile(file) {
+export function readTextFile(file) {
   return new Promise((resolve, reject) => {
     let rawFile = new XMLHttpRequest();
     rawFile.overrideMimeType("application/json");
@@ -143,9 +153,8 @@ function readTextFile(file) {
   })
 }
 
-async function generateCards() {
-  buildCards(await readTextFile("./files/pets.json"));
+export async function generateCards() {
+  let cardData = await getCardsData("./files/pets.json");
+  buildCards(cardData, getItemsContainer());
   Promise.resolve();
 }
-
-export default generateCards;
