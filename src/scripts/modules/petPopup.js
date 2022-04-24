@@ -1,4 +1,4 @@
-import * as global from './globalFunctions.js';
+import * as globalFunctions from './globalFunctions.js';
 
 const hiddenClass = 'hidden',
   fadeInClass = 'fade-in',
@@ -6,7 +6,7 @@ const hiddenClass = 'hidden',
   closeBtnActiveClass = 'pet-popup__close-btn_active';
 
 function openPopup(popup) {
-  global.scrollLock();
+  globalFunctions.scrollLock();
 
   popup.classList.remove(hiddenClass);
   setTimeout(() => {
@@ -16,7 +16,7 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
-  global.scrollUnlock();
+  globalFunctions.scrollUnlock();
 
   popup.classList.add(fadeOutClass);
   popup.classList.remove(fadeInClass);
@@ -28,6 +28,8 @@ function closePopup(popup) {
 function bindPopup(card, index) {
   const popupLayouts = document.querySelectorAll('.pet-popup'),
   closeBtns = document.querySelectorAll('.pet-popup__close-btn');
+
+  globalFunctions.scrollUnlock();
 
   card.addEventListener('click', (e) => {
     openPopup(popupLayouts[index]);

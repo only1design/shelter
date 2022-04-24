@@ -9,5 +9,4 @@ document.addEventListener("DOMContentLoaded", async function() {
   sideMenu();
   await mainSlider();
   await petsPaginator();
-  petPopup();
 });

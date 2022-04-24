@@ -1,5 +1,6 @@
 import * as cards from './cards.js';
-import * as global from './globalFunctions.js';
+import * as globalFunctions from './globalFunctions.js';
+import petPopup from './petPopup.js';
 
 const btnLeft = document.querySelectorAll('.our-friends__slider-arrow')[0],
   btnRight = document.querySelectorAll('.our-friends__slider-arrow')[1],
@@ -14,56 +15,46 @@ function getSlides() {
   return document.querySelectorAll('.' + slideClass);
 }
 
-function clearSlidesModificators(slideIndex, action) {
+function clearSlidesModificators() {
   let slides = getSlides();
 
-  switch (action) {
-    case 'right':
-      slides[slideIndex - 2].classList.remove(slidePreviousClass);
-      slides[slideIndex - 1].classList.remove(slideCurrentClass);
-      slides[slideIndex].classList.remove(slideNextClass);
-      break;
-  
-    case 'left':
-      slides[slideIndex].classList.remove(slidePreviousClass);
-      slides[slideIndex + 1].classList.remove(slideCurrentClass);
-      slides[slideIndex + 2].classList.remove(slideNextClass);
-      break;
-  }
+    slides.forEach(slide => {
+      slide.classList.remove(slidePreviousClass);
+      slide.classList.remove(slideCurrentClass);
+      slide.classList.remove(slideNextClass);
+    })
 }
 
 function swipeRight() {
-  const slides = getSlides(),
-    container = cards.getItemsContainer(),
-    currentSlideIndex = getCurrentSlideIndex();
-  
+  const container = cards.getItemsContainer(),
+    slides = getSlides();
+
+  clearSlidesModificators();
+
   container.appendChild(slides[0]);
-  clearSlidesModificators(currentSlideIndex, 'right');
-  
-  slides[currentSlideIndex].classList.add(slidePreviousClass);
-  slides[currentSlideIndex + 1].classList.add(slideCurrentClass);
-  slides[currentSlideIndex + 2].classList.add(slideNextClass);
+
+  initCurrentSlide();
 }
 
 function swipeLeft() {
-  const slides = getSlides(),
-    container = cards.getItemsContainer(),
-    currentSlideIndex = getCurrentSlideIndex();
+  const container = cards.getItemsContainer(),
+    slides = getSlides();
 
-  container.insertBefore(slides[slides.length - 1], container.firstChild)
-  clearSlidesModificators(currentSlideIndex, 'left');
+  clearSlidesModificators();
 
-  slides[currentSlideIndex - 2].classList.add(slidePreviousClass);
-  slides[currentSlideIndex - 1].classList.add(slideCurrentClass);
-  slides[currentSlideIndex].classList.add(slideNextClass);
+  container.insertBefore(slides[slides.length - 1], slides[0])
+
+  initCurrentSlide();
 }
 
 const btnLeftAction = () => {
   swipeLeft();
   removeBtnActions();
-
-  document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', () => {
-    updateBtnActions();
+  
+  document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', (e) => {
+    if (e.target == document.querySelector('.' + slideCurrentClass)) {
+      updateBtnActions();
+    }
   });
 }
 
@@ -71,8 +62,10 @@ const btnRightAction = () => {
   swipeRight();
   removeBtnActions();
 
-  document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', () => {
-    updateBtnActions();
+  document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', (e) => {
+    if (e.target == document.querySelector('.' + slideCurrentClass)) {
+      updateBtnActions();
+    }
   });
 }
 
@@ -84,6 +77,10 @@ function removeBtnActions() {
 function updateBtnActions() {
   activateBtn(btnLeft, btnLeftAction);
   activateBtn(btnRight, btnRightAction);
+
+  if (getSlides().length < 2) {
+    removeBtnActions();
+  }
 }
 
 function disactivateBtn(btn, action) {
@@ -117,7 +114,7 @@ function ifSlideExist(slideIndex, func = () => { return true }) {
 }
 
 function initCurrentSlide() {
-  const currentSlideIndex = Math.floor(getSlides().length / 2),
+  const currentSlideIndex = getCurrentSlideIndex(),
     slides = getSlides();
 
   ifSlideExist(currentSlideIndex - 1, () => {
@@ -134,7 +131,8 @@ function initCurrentSlide() {
 }
 
 function buildSlides(cardsData) {
-  const itemsQuantity = getItemsQuantity();
+  const itemsQuantity = getItemsQuantity(),
+    container = cards.getItemsContainer();
 
   for (let i = 0; i < (cardsData.length - (cardsData.length % itemsQuantity)); i = i + itemsQuantity) {
     const currentSlide = document.createElement('div');
@@ -144,11 +142,19 @@ function buildSlides(cardsData) {
       cards.buildCard(cardsData[i + j], currentSlide);
     }
 
-    cards.getItemsContainer().append(currentSlide);
+    container.append(currentSlide);
+  }
+
+  const slides = getSlides();
+
+  if (slides.length == 2) {
+    container.insertBefore(container.lastChild.cloneNode(true), container.firstChild);
+    container.insertBefore(slides[0].cloneNode(true), container.firstChild);
   }
 
   initCurrentSlide();
   updateBtnActions();
+  petPopup();
 }
 
 function autoRebuildSlides(cardsData) {
@@ -160,8 +166,9 @@ function autoRebuildSlides(cardsData) {
       itemsQuantity = getItemsQuantity();
 
       removeBtnActions();
-
+      
       container.innerHTML = '';
+
       buildSlides(cardsData);
     }
   })
@@ -174,12 +181,8 @@ function getCurrentSlideIndex() {
 async function mainSlider() {
   if (slider) {
     let cardsData = await cards.getCardsData("./files/pets.json"),
-    mixedCardsData = [];
+    mixedCardsData = globalFunctions.shuffle(cardsData); 
 
-    for (let i = 0; i < 6; i++) {
-      mixedCardsData = mixedCardsData.concat(global.shuffle(cardsData));
-    }    
-  
     buildSlides(mixedCardsData);
     autoRebuildSlides(mixedCardsData);
   }

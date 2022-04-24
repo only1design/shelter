@@ -1,5 +1,6 @@
 import * as cards from './cards.js';
-import * as global from './globalFunctions.js';
+import * as globalFunctions from './globalFunctions.js';
+import petPopup from './petPopup.js';
 
 const btnPrevious = document.querySelectorAll('.pets__paginator-btn')[1],
   btnNext =  document.querySelectorAll('.pets__paginator-btn')[3],
@@ -271,6 +272,8 @@ function buildPages(cardsData) {
 
   initCurrentPage();
   updateBtnActions();
+  updateCurrentBtnValue();
+  petPopup();
 }
 
 function autoRebuildPages(cardsData) {
@@ -309,7 +312,7 @@ async function petsPaginator() {
       mixedCardsData = [];
 
     for (let i = 0; i < 6; i++) {
-      mixedCardsData = mixedCardsData.concat(global.shuffle(cardsData));
+      mixedCardsData = mixedCardsData.concat(globalFunctions.shuffle(cardsData));
     }
 
     buildPages(mixedCardsData);

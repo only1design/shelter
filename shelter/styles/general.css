@@ -1157,7 +1157,7 @@ a {
 }
 
 .header__burger_active {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
 }
 
 .header__burger-icon {
