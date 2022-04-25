@@ -5,11 +5,13 @@ import petPopup from './petPopup.js';
 const btnLeft = document.querySelectorAll('.our-friends__slider-arrow')[0],
   btnRight = document.querySelectorAll('.our-friends__slider-arrow')[1],
   btnInactiveClass = 'our-friends__slider-arrow_inactive',
-  slider = document.querySelector('.our-friends__slider'),
   slideClass = 'our-friends__slide',
   slideCurrentClass = 'our-friends__slide_curr',
   slidePreviousClass = 'our-friends__slide_prev',
   slideNextClass = 'our-friends__slide_next';
+
+let globalCardsData = [],
+  currentSlidesIndeces = [];
 
 function getSlides() {
   return document.querySelectorAll('.' + slideClass);
@@ -18,39 +20,53 @@ function getSlides() {
 function clearSlidesModificators() {
   let slides = getSlides();
 
-    slides.forEach(slide => {
-      slide.classList.remove(slidePreviousClass);
-      slide.classList.remove(slideCurrentClass);
-      slide.classList.remove(slideNextClass);
-    })
+  slides.forEach(slide => {
+    slide.classList.remove(slidePreviousClass);
+    slide.classList.remove(slideCurrentClass);
+    slide.classList.remove(slideNextClass);
+  })
 }
 
 function swipeRight() {
   const container = cards.getItemsContainer(),
-    slides = getSlides();
+    lastSlideIndeces = currentSlidesIndeces[2],
+    newSlideIndeces = newRandomIndeces(lastSlideIndeces, globalCardsData.length - 1),
+    newSlideData = newSlideIndeces.map(index => globalCardsData[index]),
+    newSlide = createSlide(newSlideData);
+  
+  currentSlidesIndeces.shift();
+  currentSlidesIndeces.push(newSlideIndeces);
 
   clearSlidesModificators();
 
-  container.appendChild(slides[0]);
+  container.removeChild(container.children[0]);
+  container.append(newSlide);
 
   initCurrentSlide();
 }
 
 function swipeLeft() {
   const container = cards.getItemsContainer(),
-    slides = getSlides();
-
+    firstSlideIndeces = currentSlidesIndeces[0],
+    newSlideIndeces = newRandomIndeces(firstSlideIndeces, globalCardsData.length - 1),
+    newSlideData = newSlideIndeces.map(index => globalCardsData[index]),
+    newSlide = createSlide(newSlideData);
+  
+  currentSlidesIndeces.pop();
+  currentSlidesIndeces.unshift(newSlideIndeces);
+    
   clearSlidesModificators();
-
-  container.insertBefore(slides[slides.length - 1], slides[0])
+  container.removeChild(container.children[container.children.length - 1]);
+  container.insertBefore(newSlide, container.firstChild);
 
   initCurrentSlide();
 }
 
 const btnLeftAction = () => {
-  swipeLeft();
   removeBtnActions();
-  
+  swipeLeft();
+  petPopup();
+
   document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', (e) => {
     if (e.target == document.querySelector('.' + slideCurrentClass)) {
       updateBtnActions();
@@ -61,7 +77,8 @@ const btnLeftAction = () => {
 const btnRightAction = () => {
   swipeRight();
   removeBtnActions();
-
+  petPopup();
+  
   document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', (e) => {
     if (e.target == document.querySelector('.' + slideCurrentClass)) {
       updateBtnActions();
@@ -130,27 +147,62 @@ function initCurrentSlide() {
   });
 }
 
-function buildSlides(cardsData) {
+function createSlide(cardData) {
   const itemsQuantity = getItemsQuantity(),
-    container = cards.getItemsContainer();
+  slide = document.createElement('div');
 
-  for (let i = 0; i < (cardsData.length - (cardsData.length % itemsQuantity)); i = i + itemsQuantity) {
-    const currentSlide = document.createElement('div');
-    currentSlide.classList.add(slideClass);
+  slide.classList.add(slideClass);
 
-    for (let j = 0; j < itemsQuantity; j++) {
-      cards.buildCard(cardsData[i + j], currentSlide);
+  for (let i = 0; i < itemsQuantity; i++) {
+    const card = cards.createCard(cardData[i]);
+
+    slide.append(card);
+  }
+
+  return slide;
+}
+
+function newRandomIndeces(previousIndeces, maxIndex) {
+  const indeces = [],
+    itemsQuantity = getItemsQuantity();
+  
+    for (let i = 0; i < itemsQuantity; i++) {
+      let randomIndex = globalFunctions.randomNumber(0, maxIndex - 1);
+      
+      while ((previousIndeces.includes(randomIndex)) || (indeces.includes(randomIndex))) {
+        randomIndex = globalFunctions.randomNumber(0, maxIndex - 1);
+      }
+      
+      indeces.push(randomIndex);
     }
+  
+  return indeces
+}
 
-    container.append(currentSlide);
+function createSlides(cardsData) {
+  let previousSlideIndeces = [],
+    currentSlideIndeces = newRandomIndeces(previousSlideIndeces, cardsData.length - 1),
+    slides = [];
+
+  for (let i = 0; i < 3; i ++) {
+    const slideData = currentSlideIndeces.map((index) => cardsData[index]),
+      slide = createSlide(slideData);
+
+    currentSlidesIndeces.push(currentSlideIndeces);
+
+    slides.push(slide);
+    previousSlideIndeces = currentSlideIndeces;
+    currentSlideIndeces = newRandomIndeces(previousSlideIndeces, cardsData.length - 1);
   }
 
-  const slides = getSlides();
+  return slides;
+}
 
-  if (slides.length == 2) {
-    container.insertBefore(container.lastChild.cloneNode(true), container.firstChild);
-    container.insertBefore(slides[0].cloneNode(true), container.firstChild);
-  }
+function buildSlides(cardsData) {
+  const container = cards.getItemsContainer(),
+    slides = createSlides(cardsData);
+
+  container.append(...slides);
 
   initCurrentSlide();
   updateBtnActions();
@@ -166,8 +218,8 @@ function autoRebuildSlides(cardsData) {
       itemsQuantity = getItemsQuantity();
 
       removeBtnActions();
-      
       container.innerHTML = '';
+      currentSlidesIndeces = [];
 
       buildSlides(cardsData);
     }
@@ -179,9 +231,10 @@ function getCurrentSlideIndex() {
 }
 
 async function mainSlider() {
-  if (slider) {
-    let cardsData = await cards.getCardsData("./files/pets.json"),
-    mixedCardsData = globalFunctions.shuffle(cardsData); 
+  if (cards.isMainPageContainer()) {
+    const cardsData = await cards.getCardsData("./files/pets.json"),
+    mixedCardsData = globalFunctions.shuffle(cardsData);
+    globalCardsData = mixedCardsData;
 
     buildSlides(mixedCardsData);
     autoRebuildSlides(mixedCardsData);
