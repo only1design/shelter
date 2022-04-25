@@ -27,26 +27,22 @@ export async function getCardsData(file) {
   return JSON.parse(await readTextFile(file));
 }
 
-export function buildCards(cardsObj, container) {
-  cardsObj.forEach(cardData => {
-    buildCard(cardData, container);
-  });
-}
+export function createCard(cardObj) {
+  let cardWrapperClass;
 
-export function buildCard(cardsObj, container) {
-  let itemWrapperClass;
   if (isMainPageContainer()) {
-    itemWrapperClass = 'our-friends__slider-item';
+    cardWrapperClass = 'our-friends__slider-item';
   } else if (isPetsPageContainer()) {
-    itemWrapperClass = 'pets__item';
+    cardWrapperClass = 'pets__item';
   }
 
-  let cardWrapper = document.createElement('div');
-  cardWrapper.classList.add(itemWrapperClass);
-  cardWrapper.append(createCardItem(cardsObj));
-  cardWrapper.append(createPopupItem(cardsObj));
+  const cardWrapper = document.createElement('div');
+  cardWrapper.classList.add(cardWrapperClass);
 
-  container.append(cardWrapper);
+  cardWrapper.append(createCardItem(cardObj));
+  cardWrapper.append(createPopupItem(cardObj));
+
+  return cardWrapper;
 }
 
 export function createCardItem(cardData) {
@@ -149,10 +145,4 @@ export function readTextFile(file) {
     }
     rawFile.send(null);
   })
-}
-
-export async function generateCards() {
-  let cardData = await getCardsData("./files/pets.json");
-  buildCards(cardData, getItemsContainer());
-  Promise.resolve();
 }

@@ -264,7 +264,8 @@ function buildPages(cardsData) {
     let currentpage = page.cloneNode();
 
     for (let j = 0; j < itemsQuantity; j++) {
-      cards.buildCard(cardsData[i + j], currentpage);
+      let card = cards.createCard(cardsData[i + j])
+      currentpage.append(card);
     }
 
     cards.getItemsContainer().append(currentpage);
@@ -285,6 +286,7 @@ function autoRebuildPages(cardsData) {
       itemsQuantity = getItemsQuantity();
 
       container.innerHTML = '';
+      removeBtnActions();
       buildPages(cardsData);
     }
   })

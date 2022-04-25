@@ -989,6 +989,8 @@ html {
 body {
   font-family: "Georgia", serif;
   font-weight: 400;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 a {
@@ -1103,6 +1105,10 @@ a {
   transition: all 0.1s ease-in-out;
 }
 
+.fixed-header-placeholder {
+  padding-top: 120px;
+}
+
 .hidden {
   display: none !important;
 }
@@ -1123,7 +1129,8 @@ a {
 }
 
 .header_sticky {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   background-color: #ffffff;
 }
@@ -1304,10 +1311,10 @@ a {
 }
 
 .our-friends__slider-arrow_inactive {
-  cursor: default !important;
-  color: #cdcdcd !important;
-  border-color: #cdcdcd !important;
-  background-color: transparent !important;
+  cursor: default;
+  color: #cdcdcd;
+  border-color: #cdcdcd;
+  background-color: transparent;
 }
 
 .our-friends__slider-items-container {
@@ -1986,8 +1993,8 @@ a {
   }
 
   .pets__items-container {
-    padding: 0 44px;
     height: 1365px;
+    box-sizing: border-box;
   }
 
   .pets__page {
@@ -2346,6 +2353,13 @@ a {
     transition: all 0.1s ease-in-out;
     background-color: #fddcc4;
     border-color: #fddcc4;
+  }
+
+  .our-friends__slider-arrow_inactive:hover {
+    cursor: default;
+    color: #cdcdcd;
+    border-color: #cdcdcd;
+    background-color: transparent;
   }
 
   .donation__card:hover {
