@@ -40,10 +40,16 @@
     cursor: pointer;
     transition: all 0.1s ease-in-out;
 
-    &:hover {
-      background-color: @color-primary-light;
-      border-color: @color-primary-light;
-    }
+    .media-hover({
+      &:hover {
+        background-color: @color-primary-light;
+        border-color: @color-primary-light;
+      } 
+    });
+
+    .media-768({
+      right: -30px;
+    });
 
     &_active {
       background-color: @color-primary-light;

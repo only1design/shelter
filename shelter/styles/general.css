@@ -989,8 +989,6 @@ html {
 body {
   font-family: "Georgia", serif;
   font-weight: 400;
-  width: 100vw;
-  overflow-x: hidden;
 }
 
 a {
@@ -1088,11 +1086,6 @@ a {
   transition: all 0.1s ease-in-out;
 }
 
-.button-primary:hover {
-  transition: all 0.1s ease-in-out;
-  background-color: #fddcc4;
-}
-
 .button-secondary {
   display: flex;
   align-items: center;
@@ -1108,13 +1101,6 @@ a {
   letter-spacing: 0.06em;
   color: #292929;
   transition: all 0.1s ease-in-out;
-}
-
-.button-secondary:hover {
-  transition: all 0.1s ease-in-out;
-  border-color: #fddcc4;
-  background-color: #fddcc4;
-  color: #292929;
 }
 
 .hidden {
@@ -1317,17 +1303,11 @@ a {
   transition: all 0.1s ease-in-out;
 }
 
-.our-friends__slider-arrow:hover {
-  transition: all 0.1s ease-in-out;
-  background-color: #fddcc4;
-  border-color: #fddcc4;
-}
-
 .our-friends__slider-arrow_inactive {
-  cursor: default !important;
-  color: #cdcdcd !important;
-  border-color: #cdcdcd !important;
-  background-color: transparent !important;
+  cursor: default;
+  color: #cdcdcd;
+  border-color: #cdcdcd;
+  background-color: transparent;
 }
 
 .our-friends__slider-items-container {
@@ -1447,11 +1427,6 @@ a {
   padding: 10px 15px;
   transition: all 0.1s ease-in-out;
   white-space: nowrap;
-}
-
-.donation__card:hover {
-  transition: all 0.1s ease-in-out;
-  background-color: #fddcc4;
 }
 
 .donation__icon {
@@ -1583,16 +1558,8 @@ a {
   cursor: default;
 }
 
-.nav__list-item:hover {
-  color: #fafafa;
-}
-
 .nav__list-item_dark {
   color: #545454;
-}
-
-.nav__list-item_dark:hover {
-  color: #292929;
 }
 
 .nav__list-item_dark-active {
@@ -1672,7 +1639,6 @@ a {
   justify-content: space-between;
   row-gap: 30px;
   top: 0;
-  left: 0;
   transition: all 0.4s ease-in-out;
   position: absolute;
   width: 100%;
@@ -1736,6 +1702,7 @@ a {
   align-items: center;
   justify-content: center;
   cursor: default;
+  transition: all 0.1s ease-in-out;
 }
 
 .pets__paginator-btn_inactive {
@@ -1747,11 +1714,6 @@ a {
 .pets__paginator-btn_active {
   background-color: transparent;
   cursor: pointer;
-}
-
-.pets__paginator-btn_active:hover {
-  border: 2px solid #fddcc4;
-  background-color: #fddcc4;
 }
 
 .pet-card {
@@ -1767,20 +1729,8 @@ a {
   transition: all 0.1s ease-in-out;
 }
 
-.pet-card:hover {
-  background-color: #ffffff;
-  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
-}
-
 .pet-card__btn {
   transition: all 0.1s ease-in-out;
-  color: #292929;
-}
-
-.pet-card:hover .pet-card__btn {
-  transition: all 0.1s ease-in-out;
-  border-color: #fddcc4;
-  background-color: #fddcc4;
   color: #292929;
 }
 
@@ -1840,11 +1790,6 @@ a {
   border: 2px solid #f1cdb3;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
-}
-
-.pet-popup__close-btn:hover {
-  background-color: #fddcc4;
-  border-color: #fddcc4;
 }
 
 .pet-popup__close-btn_active {
@@ -2189,13 +2134,14 @@ a {
 
   .our-friends__slider-items-container {
     order: 1;
-    width: 270px;
-    margin: 0 500px;
+    min-width: 270px;
+    width: 100%;
     justify-content: center;
   }
 
   .our-friends__slide {
     transition: all 0.2s ease-in-out;
+    justify-content: center;
   }
 
   .our-friends__slider-item:nth-child(n+2) {
@@ -2348,6 +2294,10 @@ a {
     column-gap: 10px;
   }
 
+  .pet-popup__close-btn {
+    right: -30px;
+  }
+
   .pet-popup__img {
     display: none;
   }
@@ -2376,6 +2326,61 @@ a {
 
   .pet-popup__list {
     padding-bottom: 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button-primary:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: #fddcc4;
+  }
+
+  .button-secondary:hover {
+    transition: all 0.1s ease-in-out;
+    border-color: #fddcc4;
+    background-color: #fddcc4;
+    color: #292929;
+  }
+
+  .our-friends__slider-arrow:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: #fddcc4;
+    border-color: #fddcc4;
+  }
+
+  .donation__card:hover {
+    transition: all 0.1s ease-in-out;
+    background-color: #fddcc4;
+  }
+
+  .nav__list-item:hover {
+    color: #fafafa;
+  }
+
+  .nav__list-item_dark:hover {
+    color: #292929;
+  }
+
+  .pets__paginator-btn_active:hover {
+    border: 2px solid #fddcc4;
+    background-color: #fddcc4;
+  }
+
+  .pet-card:hover {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  }
+
+  .pet-card:hover .pet-card__btn {
+    transition: all 0.1s ease-in-out;
+    border-color: #fddcc4;
+    background-color: #fddcc4;
+    color: #292929;
+  }
+
+  .pet-popup__close-btn:hover {
+    background-color: #fddcc4;
+    border-color: #fddcc4;
   }
 }
 /*# sourceMappingURL=general.css.map */

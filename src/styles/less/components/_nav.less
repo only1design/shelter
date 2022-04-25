@@ -26,16 +26,20 @@
       border-bottom: 3px solid @color-primary;
       cursor: default;
     }
-    &:hover {
-      color: @color-light-s;
-    }
+    .media-hover({
+      &:hover {
+        color: @color-light-s;
+      }
+    });
 
     &_dark {
       color: @color-dark-l;
 
-      &:hover {
-        color: @color-dark-3xl;
-      }
+      .media-hover({
+        &:hover {
+          color: @color-dark-3xl;
+        }
+      });
     }
 
     &_dark-active {

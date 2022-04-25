@@ -61,17 +61,19 @@
     font-size: 6px;
     transition: all 0.1s ease-in-out;
 
-    &:hover {
-      transition: all 0.1s ease-in-out;
-      background-color: @color-primary-light;
-      border-color: @color-primary-light;
-    }
+    .media-hover({
+      &:hover {
+        transition: all 0.1s ease-in-out;
+        background-color: @color-primary-light;
+        border-color: @color-primary-light;
+      } 
+    });
 
     &_inactive {
-      cursor: default !important;
-      color: @color-dark-s !important;
-      border-color: @color-dark-s !important;
-      background-color: transparent !important;
+      cursor: default;
+      color: @color-dark-s;
+      border-color: @color-dark-s;
+      background-color: transparent;
     }
 
     .media-768({
@@ -97,8 +99,8 @@
 
     .media-768({
       order: 1;
-      width: 270px;
-      margin: 0 500px;
+      min-width: 270px;
+      width: 100%;
       justify-content: center;
     });
   }
@@ -120,6 +122,7 @@
 
     .media-768({
       transition: all .2s ease-in-out;
+      justify-content: center;
     });
 
     &_curr {

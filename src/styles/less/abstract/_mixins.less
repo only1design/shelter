@@ -5,3 +5,7 @@
 .media-768(@rules) {
   @media (max-width: 767.9px) { @rules(); }
 }
+
+.media-hover(@rules) {
+  @media (hover: hover) and (pointer: fine) { @rules(); }
+}

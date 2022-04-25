@@ -82,10 +82,12 @@
 
     white-space: nowrap;
 
-    &:hover {
-      transition: all 0.1s ease-in-out;
-      background-color: @color-primary-light;
-    }
+    .media-hover({
+      &:hover {
+        transition: all 0.1s ease-in-out;
+        background-color: @color-primary-light;
+      }
+    });
   }
 
   &__icon {

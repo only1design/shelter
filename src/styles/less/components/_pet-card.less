@@ -12,22 +12,26 @@
   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0);
   transition: all 0.1s ease-in-out;
 
-  &:hover {
-    background-color: @color-light-xl;
-    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
-  }
+  .media-hover({
+    &:hover {
+      background-color: @color-light-xl;
+      box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+    }
+  });
   
   &__btn {
     transition: all 0.1s ease-in-out;
     color: @color-dark-3xl;
   }
 
-  &:hover .pet-card__btn {
-    transition: all 0.1s ease-in-out;
-    border-color: @color-primary-light;
-    background-color: @color-primary-light;
-    color: @color-dark-3xl;
-  }
+  .media-hover({
+    &:hover .pet-card__btn {
+      transition: all 0.1s ease-in-out;
+      border-color: @color-primary-light;
+      background-color: @color-primary-light;
+      color: @color-dark-3xl;
+    }   
+  });
 
   &__img {
     margin-bottom: 29px;
