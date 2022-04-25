@@ -1304,10 +1304,10 @@ a {
 }
 
 .our-friends__slider-arrow_inactive {
-  cursor: default;
-  color: #cdcdcd;
-  border-color: #cdcdcd;
-  background-color: transparent;
+  cursor: default !important;
+  color: #cdcdcd !important;
+  border-color: #cdcdcd !important;
+  background-color: transparent !important;
 }
 
 .our-friends__slider-items-container {
