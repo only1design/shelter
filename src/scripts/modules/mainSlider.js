@@ -20,27 +20,31 @@ function getSlides() {
 function clearSlidesModificators() {
   let slides = getSlides();
 
-    slides.forEach(slide => {
-      slide.classList.remove(slidePreviousClass);
-      slide.classList.remove(slideCurrentClass);
-      slide.classList.remove(slideNextClass);
-    })
+  slides.forEach(slide => {
+    slide.classList.remove(slidePreviousClass);
+    slide.classList.remove(slideCurrentClass);
+    slide.classList.remove(slideNextClass);
+  })
+
+  // slides[0].classList.remove(slidePreviousClass);
+  // slides[1].classList.remove(slideCurrentClass);
+  // slides[2].classList.remove(slideNextClass);
+  
 }
 
 function swipeRight() {
   const container = cards.getItemsContainer(),
-    lastSlideIndeces = currentSlidesIndeces[2];
-
-  clearSlidesModificators();
-  container.removeChild(container.children[0]);
-
-  const newSlideIndeces = newRandomIndeces(lastSlideIndeces, globalCardsData.length - 1),
+    lastSlideIndeces = currentSlidesIndeces[2],
+    newSlideIndeces = newRandomIndeces(lastSlideIndeces, globalCardsData.length - 1),
     newSlideData = newSlideIndeces.map(index => globalCardsData[index]),
     newSlide = createSlide(newSlideData);
-
+  
   currentSlidesIndeces.shift();
   currentSlidesIndeces.push(newSlideIndeces);
 
+  clearSlidesModificators();
+
+  container.removeChild(container.children[0]);
   container.append(newSlide);
 
   initCurrentSlide();
@@ -48,31 +52,29 @@ function swipeRight() {
 
 function swipeLeft() {
   const container = cards.getItemsContainer(),
-    firstSlideIndeces = currentSlidesIndeces[0];
-
-  clearSlidesModificators();
-  container.removeChild(container.children[container.children.length - 1]);
-
-  const newSlideIndeces = newRandomIndeces(firstSlideIndeces, globalCardsData.length - 1),
+    firstSlideIndeces = currentSlidesIndeces[0],
+    newSlideIndeces = newRandomIndeces(firstSlideIndeces, globalCardsData.length - 1),
     newSlideData = newSlideIndeces.map(index => globalCardsData[index]),
     newSlide = createSlide(newSlideData);
-
+  
   currentSlidesIndeces.pop();
   currentSlidesIndeces.unshift(newSlideIndeces);
-
+    
+  clearSlidesModificators();
+  container.removeChild(container.children[container.children.length - 1]);
   container.insertBefore(newSlide, container.firstChild);
 
   initCurrentSlide();
 }
 
 const btnLeftAction = () => {
-  swipeLeft();
   removeBtnActions();
-  console.log('left');
+  swipeLeft();
+  petPopup();
+
   document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', (e) => {
     if (e.target == document.querySelector('.' + slideCurrentClass)) {
       updateBtnActions();
-      console.log(e.target);
     }
   });
 }
@@ -80,6 +82,7 @@ const btnLeftAction = () => {
 const btnRightAction = () => {
   swipeRight();
   removeBtnActions();
+  petPopup();
   
   document.querySelector('.' + slideCurrentClass).addEventListener('transitionend', (e) => {
     if (e.target == document.querySelector('.' + slideCurrentClass)) {

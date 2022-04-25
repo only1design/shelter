@@ -256,19 +256,20 @@ function initCurrentPage(pageIndex = 0) {
 
 function buildPages(cardsData) {
   const itemsQuantity = getItemsQuantity(),
-    page = document.createElement('div');
+    page = document.createElement('div'),
+    container = cards.getItemsContainer();
 
   page.classList.add(pageClass);
 
   for (let i = 0; i < (cardsData.length - (cardsData.length % itemsQuantity)); i = i + itemsQuantity) {
-    let currentpage = page.cloneNode();
+    let currentPage = page.cloneNode();
 
     for (let j = 0; j < itemsQuantity; j++) {
       let card = cards.createCard(cardsData[i + j])
-      currentpage.append(card);
+      currentPage.append(card);
     }
 
-    cards.getItemsContainer().append(currentpage);
+    container.append(currentPage);
   }
 
   initCurrentPage();
@@ -287,6 +288,7 @@ function autoRebuildPages(cardsData) {
 
       container.innerHTML = '';
       removeBtnActions();
+
       buildPages(cardsData);
     }
   })
@@ -314,7 +316,7 @@ async function petsPaginator() {
       mixedCardsData = [];
 
     for (let i = 0; i < 6; i++) {
-      mixedCardsData = mixedCardsData.concat(globalFunctions.shuffle(cardsData));
+      mixedCardsData = mixedCardsData.concat(globalFunctions.shuffle(cardsData.slice(0,4)).concat(globalFunctions.shuffle(cardsData.slice(4,8))));
     }
 
     buildPages(mixedCardsData);
